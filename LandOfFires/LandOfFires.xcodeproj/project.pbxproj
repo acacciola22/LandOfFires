@@ -1,0 +1,682 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A5F2B95293F5BCF0056AAE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */; };
+		2A5F2B97293F5BCF0056AAE3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */; };
+		2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B98293F5BCF0056AAE3 /* Main.storyboard */; };
+		2A5F2B9D293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B9B293F5BCF0056AAE3 /* LaunchScreen.storyboard */; };
+		2A5F2BA5293F5BCF0056AAE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2BA4293F5BCF0056AAE3 /* AppDelegate.swift */; };
+		2A5F2BA7293F5BCF0056AAE3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2BA6293F5BCF0056AAE3 /* GameViewController.swift */; };
+		2A5F2BAA293F5BCF0056AAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2BA8293F5BCF0056AAE3 /* Main.storyboard */; };
+		2A5F2BAD293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2BAB293F5BCF0056AAE3 /* LaunchScreen.storyboard */; };
+		2A5F2BB5293F5BCF0056AAE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2BB4293F5BCF0056AAE3 /* AppDelegate.swift */; };
+		2A5F2BB7293F5BCF0056AAE3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2BB6293F5BCF0056AAE3 /* GameViewController.swift */; };
+		2A5F2BBA293F5BCF0056AAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2BB8293F5BCF0056AAE3 /* Main.storyboard */; };
+		2A5F2BBC293F5BCF0056AAE3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B89293F5BCD0056AAE3 /* Actions.sks */; };
+		2A5F2BBD293F5BCF0056AAE3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B89293F5BCD0056AAE3 /* Actions.sks */; };
+		2A5F2BBE293F5BCF0056AAE3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B89293F5BCD0056AAE3 /* Actions.sks */; };
+		2A5F2BBF293F5BCF0056AAE3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */; };
+		2A5F2BC0293F5BCF0056AAE3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */; };
+		2A5F2BC1293F5BCF0056AAE3 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */; };
+		2A5F2BC2293F5BCF0056AAE3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */; };
+		2A5F2BC3293F5BCF0056AAE3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */; };
+		2A5F2BC4293F5BCF0056AAE3 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */; };
+		2A5F2BC5293F5BCF0056AAE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */; };
+		2A5F2BC6293F5BCF0056AAE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */; };
+		2A5F2BC7293F5BCF0056AAE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2A5F2B89293F5BCD0056AAE3 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2A5F2B91293F5BCF0056AAE3 /* LandOfFires.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LandOfFires.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		2A5F2B99293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2A5F2B9C293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2A5F2BA2293F5BCF0056AAE3 /* LandOfFires.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LandOfFires.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A5F2BA4293F5BCF0056AAE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2A5F2BA6293F5BCF0056AAE3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		2A5F2BA9293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2A5F2BAC293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2A5F2BB2293F5BCF0056AAE3 /* LandOfFires.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LandOfFires.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A5F2BB4293F5BCF0056AAE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2A5F2BB6293F5BCF0056AAE3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		2A5F2BB9293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2A5F2BBB293F5BCF0056AAE3 /* LandOfFires_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LandOfFires_macOS.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A5F2B8E293F5BCF0056AAE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A5F2B9F293F5BCF0056AAE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A5F2BAF293F5BCF0056AAE3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2A5F2B83293F5BCD0056AAE3 = {
+			isa = PBXGroup;
+			children = (
+				2A5F2B88293F5BCD0056AAE3 /* LandOfFires Shared */,
+				2A5F2B93293F5BCF0056AAE3 /* LandOfFires iOS */,
+				2A5F2BA3293F5BCF0056AAE3 /* LandOfFires tvOS */,
+				2A5F2BB3293F5BCF0056AAE3 /* LandOfFires macOS */,
+				2A5F2B92293F5BCF0056AAE3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2A5F2B88293F5BCD0056AAE3 /* LandOfFires Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2A5F2B89293F5BCD0056AAE3 /* Actions.sks */,
+				2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */,
+				2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */,
+				2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */,
+			);
+			path = "LandOfFires Shared";
+			sourceTree = "<group>";
+		};
+		2A5F2B92293F5BCF0056AAE3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A5F2B91293F5BCF0056AAE3 /* LandOfFires.app */,
+				2A5F2BA2293F5BCF0056AAE3 /* LandOfFires.app */,
+				2A5F2BB2293F5BCF0056AAE3 /* LandOfFires.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A5F2B93293F5BCF0056AAE3 /* LandOfFires iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */,
+				2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */,
+				2A5F2B98293F5BCF0056AAE3 /* Main.storyboard */,
+				2A5F2B9B293F5BCF0056AAE3 /* LaunchScreen.storyboard */,
+			);
+			path = "LandOfFires iOS";
+			sourceTree = "<group>";
+		};
+		2A5F2BA3293F5BCF0056AAE3 /* LandOfFires tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				2A5F2BA4293F5BCF0056AAE3 /* AppDelegate.swift */,
+				2A5F2BA6293F5BCF0056AAE3 /* GameViewController.swift */,
+				2A5F2BA8293F5BCF0056AAE3 /* Main.storyboard */,
+				2A5F2BAB293F5BCF0056AAE3 /* LaunchScreen.storyboard */,
+			);
+			path = "LandOfFires tvOS";
+			sourceTree = "<group>";
+		};
+		2A5F2BB3293F5BCF0056AAE3 /* LandOfFires macOS */ = {
+			isa = PBXGroup;
+			children = (
+				2A5F2BB4293F5BCF0056AAE3 /* AppDelegate.swift */,
+				2A5F2BB6293F5BCF0056AAE3 /* GameViewController.swift */,
+				2A5F2BB8293F5BCF0056AAE3 /* Main.storyboard */,
+				2A5F2BBB293F5BCF0056AAE3 /* LandOfFires_macOS.entitlements */,
+			);
+			path = "LandOfFires macOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2A5F2B90293F5BCF0056AAE3 /* LandOfFires iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A5F2BCA293F5BCF0056AAE3 /* Build configuration list for PBXNativeTarget "LandOfFires iOS" */;
+			buildPhases = (
+				2A5F2B8D293F5BCF0056AAE3 /* Sources */,
+				2A5F2B8E293F5BCF0056AAE3 /* Frameworks */,
+				2A5F2B8F293F5BCF0056AAE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LandOfFires iOS";
+			productName = "LandOfFires iOS";
+			productReference = 2A5F2B91293F5BCF0056AAE3 /* LandOfFires.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2A5F2BA1293F5BCF0056AAE3 /* LandOfFires tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A5F2BCD293F5BCF0056AAE3 /* Build configuration list for PBXNativeTarget "LandOfFires tvOS" */;
+			buildPhases = (
+				2A5F2B9E293F5BCF0056AAE3 /* Sources */,
+				2A5F2B9F293F5BCF0056AAE3 /* Frameworks */,
+				2A5F2BA0293F5BCF0056AAE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LandOfFires tvOS";
+			productName = "LandOfFires tvOS";
+			productReference = 2A5F2BA2293F5BCF0056AAE3 /* LandOfFires.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2A5F2BB1293F5BCF0056AAE3 /* LandOfFires macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A5F2BD0293F5BCF0056AAE3 /* Build configuration list for PBXNativeTarget "LandOfFires macOS" */;
+			buildPhases = (
+				2A5F2BAE293F5BCF0056AAE3 /* Sources */,
+				2A5F2BAF293F5BCF0056AAE3 /* Frameworks */,
+				2A5F2BB0293F5BCF0056AAE3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LandOfFires macOS";
+			productName = "LandOfFires macOS";
+			productReference = 2A5F2BB2293F5BCF0056AAE3 /* LandOfFires.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A5F2B84293F5BCD0056AAE3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					2A5F2B90293F5BCF0056AAE3 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					2A5F2BA1293F5BCF0056AAE3 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					2A5F2BB1293F5BCF0056AAE3 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = 2A5F2B87293F5BCD0056AAE3 /* Build configuration list for PBXProject "LandOfFires" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2A5F2B83293F5BCD0056AAE3;
+			productRefGroup = 2A5F2B92293F5BCF0056AAE3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2A5F2B90293F5BCF0056AAE3 /* LandOfFires iOS */,
+				2A5F2BA1293F5BCF0056AAE3 /* LandOfFires tvOS */,
+				2A5F2BB1293F5BCF0056AAE3 /* LandOfFires macOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2A5F2B8F293F5BCF0056AAE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A5F2BBF293F5BCF0056AAE3 /* GameScene.sks in Resources */,
+				2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */,
+				2A5F2BBC293F5BCF0056AAE3 /* Actions.sks in Resources */,
+				2A5F2B9D293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */,
+				2A5F2BC5293F5BCF0056AAE3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A5F2BA0293F5BCF0056AAE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A5F2BC0293F5BCF0056AAE3 /* GameScene.sks in Resources */,
+				2A5F2BAA293F5BCF0056AAE3 /* Main.storyboard in Resources */,
+				2A5F2BBD293F5BCF0056AAE3 /* Actions.sks in Resources */,
+				2A5F2BAD293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */,
+				2A5F2BC6293F5BCF0056AAE3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A5F2BB0293F5BCF0056AAE3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A5F2BBA293F5BCF0056AAE3 /* Main.storyboard in Resources */,
+				2A5F2BC1293F5BCF0056AAE3 /* GameScene.sks in Resources */,
+				2A5F2BC7293F5BCF0056AAE3 /* Assets.xcassets in Resources */,
+				2A5F2BBE293F5BCF0056AAE3 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A5F2B8D293F5BCF0056AAE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A5F2BC2293F5BCF0056AAE3 /* GameScene.swift in Sources */,
+				2A5F2B97293F5BCF0056AAE3 /* GameViewController.swift in Sources */,
+				2A5F2B95293F5BCF0056AAE3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A5F2B9E293F5BCF0056AAE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A5F2BC3293F5BCF0056AAE3 /* GameScene.swift in Sources */,
+				2A5F2BA7293F5BCF0056AAE3 /* GameViewController.swift in Sources */,
+				2A5F2BA5293F5BCF0056AAE3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A5F2BAE293F5BCF0056AAE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A5F2BC4293F5BCF0056AAE3 /* GameScene.swift in Sources */,
+				2A5F2BB7293F5BCF0056AAE3 /* GameViewController.swift in Sources */,
+				2A5F2BB5293F5BCF0056AAE3 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2A5F2B98293F5BCF0056AAE3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5F2B99293F5BCF0056AAE3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2A5F2B9B293F5BCF0056AAE3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5F2B9C293F5BCF0056AAE3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2A5F2BA8293F5BCF0056AAE3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5F2BA9293F5BCF0056AAE3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2A5F2BAB293F5BCF0056AAE3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5F2BAC293F5BCF0056AAE3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2A5F2BB8293F5BCF0056AAE3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5F2BB9293F5BCF0056AAE3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2A5F2BC8293F5BCF0056AAE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2A5F2BC9293F5BCF0056AAE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		2A5F2BCB293F5BCF0056AAE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C5XTRXCLV8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = antonia.LandOfFires;
+				PRODUCT_NAME = LandOfFires;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2A5F2BCC293F5BCF0056AAE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C5XTRXCLV8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = antonia.LandOfFires;
+				PRODUCT_NAME = LandOfFires;
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2A5F2BCE293F5BCF0056AAE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "tvOS App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C5XTRXCLV8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = antonia.LandOfFires;
+				PRODUCT_NAME = LandOfFires;
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 16.1;
+			};
+			name = Debug;
+		};
+		2A5F2BCF293F5BCF0056AAE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "tvOS App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C5XTRXCLV8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = antonia.LandOfFires;
+				PRODUCT_NAME = LandOfFires;
+				SDKROOT = appletvos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 16.1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2A5F2BD1293F5BCF0056AAE3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "LandOfFires macOS/LandOfFires_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C5XTRXCLV8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = antonia.LandOfFires;
+				PRODUCT_NAME = LandOfFires;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2A5F2BD2293F5BCF0056AAE3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "LandOfFires macOS/LandOfFires_macOS.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C5XTRXCLV8;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSMainStoryboardFile = Main;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = antonia.LandOfFires;
+				PRODUCT_NAME = LandOfFires;
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A5F2B87293F5BCD0056AAE3 /* Build configuration list for PBXProject "LandOfFires" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A5F2BC8293F5BCF0056AAE3 /* Debug */,
+				2A5F2BC9293F5BCF0056AAE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A5F2BCA293F5BCF0056AAE3 /* Build configuration list for PBXNativeTarget "LandOfFires iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A5F2BCB293F5BCF0056AAE3 /* Debug */,
+				2A5F2BCC293F5BCF0056AAE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A5F2BCD293F5BCF0056AAE3 /* Build configuration list for PBXNativeTarget "LandOfFires tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A5F2BCE293F5BCF0056AAE3 /* Debug */,
+				2A5F2BCF293F5BCF0056AAE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A5F2BD0293F5BCF0056AAE3 /* Build configuration list for PBXNativeTarget "LandOfFires macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A5F2BD1293F5BCF0056AAE3 /* Debug */,
+				2A5F2BD2293F5BCF0056AAE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A5F2B84293F5BCD0056AAE3 /* Project object */;
+}
