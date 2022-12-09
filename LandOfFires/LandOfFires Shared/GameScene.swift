@@ -9,117 +9,81 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    var fairy = SKSpriteNode()
+    var fairyMoveUp = SKAction()
+    var fairyMoveDown = SKAction()
     
-    fileprivate var label : SKLabelNode?
-    fileprivate var spinnyNode : SKShapeNode?
-
-    
-    class func newGameScene() -> GameScene {
-        // Load 'GameScene.sks' as an SKScene.
-        guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
-            print("Failed to load GameScene.sks")
-            abort()
-        }
-        
-        // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        
-        return scene
-    }
-    
-    func setUpScene() {
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 4.0
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
-    }
+    let backgroundVelocity: CGFloat = 3.0
     
     override func didMove(to view: SKView) {
-        self.setUpScene()
-    }
-
-    func makeSpinny(at pos: CGPoint, color: SKColor) {
-        if let spinny = self.spinnyNode?.copy() as! SKShapeNode? {
-            spinny.position = pos
-            spinny.strokeColor = color
-            self.addChild(spinny)
-        }
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
-    }
-}
-
-#if os(iOS) || os(tvOS)
-// Touch-based event handling
-extension GameScene {
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
+        self.backgroundColor = .white
+        self.addBackground()
+        self.addFairy()
         
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.green)
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
+        
+    }
+    
+    
+    func addFairy() {
+        fairy = SKSpriteNode(imageNamed: "fairy")
+        fairy.setScale(0.25)
+        
+        fairy.physicsBody = SKPhysicsBody(rectangleOf: fairy.size)
+        fairy.physicsBody?.isDynamic = true
+        fairy.name = "fairy"
+        fairy.position = CGPoint(x: 100, y: 100)
+        
+        
+        fairyMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
+        fairyMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.2)
+        
+        self.addChild(fairy)
+        
+    }
+
+    func addBackground() {
+        for index in 0..<2{
+            let bg = SKSpriteNode(imageNamed: "background")
+            bg.position = CGPoint (x: index * Int(bg.size.width), y: 0)
+            bg.anchorPoint = CGPoint(x: 0, y: 0)
+            bg.name = "background"
+            
+            self.addChild(bg)
+            
+        }
+    }
+    func moveBackground() {
+        self.enumerateChildNodes(withName: "background", using: {(node, stop)-> Void in
+            if let bg = node as? SKSpriteNode {
+                bg.position = CGPoint(x: bg.position.x - self.backgroundVelocity, y: bg.position.y)
+                
+                if bg.position.x <= -bg.size.width{
+                    bg.position = CGPoint(x: bg.position.x + bg.size.width * 2, y: bg.position.y)
+                }
+            }
+        })
+    }
+    override func update(_ currentTime: TimeInterval) {
+        self.moveBackground()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            if location.y > fairy.position.y{
+                if fairy.position.y < 300 {
+                    fairy.run(fairyMoveUp)
+                }
+            } else {
+                 if fairy.position.y > 50 {
+                    fairy.run(fairyMoveDown)
+                }
+            }
+                
         }
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.blue)
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-        }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
-        }
-    }
-    
-   
 }
-#endif
 
-#if os(OSX)
-// Mouse-based event handling
-extension GameScene {
-
-    override func mouseDown(with event: NSEvent) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
-        self.makeSpinny(at: event.location(in: self), color: SKColor.green)
-    }
-    
-    override func mouseDragged(with event: NSEvent) {
-        self.makeSpinny(at: event.location(in: self), color: SKColor.blue)
-    }
-    
-    override func mouseUp(with event: NSEvent) {
-        self.makeSpinny(at: event.location(in: self), color: SKColor.red)
-    }
-
-}
-#endif
 
