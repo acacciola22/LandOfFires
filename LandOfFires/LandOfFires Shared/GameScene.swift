@@ -13,12 +13,16 @@ class GameScene: SKScene {
     var fairyMoveUp = SKAction()
     var fairyMoveDown = SKAction()
     
+    var lastWheelAdded: TimeInterval = 0
+    
     let backgroundVelocity: CGFloat = 3.0
+    let wheelVelocity: CGFloat = 5.0
     
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
         self.addBackground()
         self.addFairy()
+        self.addWheel()
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
@@ -53,6 +57,21 @@ class GameScene: SKScene {
             
         }
     }
+    
+    func addWheel() {
+        let wheel = SKSpriteNode(imageNamed: "wheel")
+        wheel.setScale(0.15)
+        wheel.physicsBody = SKPhysicsBody(rectangleOf: wheel.size)
+        wheel.physicsBody?.isDynamic = true
+        wheel.name = "wheel"
+        
+        let random: CGFloat = CGFloat(arc4random_uniform(300))
+        wheel.position = CGPoint(x: self.frame.size.width + 20, y: random)
+        self.addChild(wheel)
+        
+    }
+    
+    
     func moveBackground() {
         self.enumerateChildNodes(withName: "background", using: {(node, stop)-> Void in
             if let bg = node as? SKSpriteNode {
@@ -64,8 +83,29 @@ class GameScene: SKScene {
             }
         })
     }
+    
+    func moveWheel() {
+        self.enumerateChildNodes(withName: "wheel", using: {(node, stop)-> Void in
+            if let wheel = node as? SKSpriteNode {
+                wheel.position = CGPoint(x: wheel.position.x - self.wheelVelocity, y: wheel.position.y)
+                
+                if wheel.position.x < 0 {
+                    wheel.removeFromParent()
+                }
+            }
+        })
+    }
+    
+    
+    
     override func update(_ currentTime: TimeInterval) {
         self.moveBackground()
+        self.moveWheel()
+        
+        if currentTime - self.lastWheelAdded > 1 {
+            self.lastWheelAdded = currentTime + 1
+            self.addWheel()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
