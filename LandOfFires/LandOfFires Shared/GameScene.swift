@@ -18,6 +18,9 @@ class GameScene: SKScene {
     let backgroundVelocity: CGFloat = 3.0
     let wheelVelocity: CGFloat = 5.0
     
+    let swipeUp = UISwipeGestureRecognizer()
+    let swipeDown = UISwipeGestureRecognizer()
+    
     override func didMove(to view: SKView) {
         self.backgroundColor = .white
         self.addBackground()
@@ -26,7 +29,23 @@ class GameScene: SKScene {
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
+        
+        swipeUp.addTarget(self, action: #selector(self.swipedUp))
+        swipeUp.direction = .up
+        view.addGestureRecognizer(swipeUp)
+        
+        swipeDown.addTarget(self, action: #selector(self.swipedDown))
+        swipeDown.direction = .down
+        view.addGestureRecognizer(swipeDown)
     }
+    
+   @objc func swipedUp() {
+       fairy.run(fairyMoveUp)
+    }
+    
+    @objc func swipedDown() {
+        fairy.run(fairyMoveDown)
+     }
     
     
     func addFairy() {
@@ -108,21 +127,21 @@ class GameScene: SKScene {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch: AnyObject in touches {
-            let location = touch.location(in: self)
-            if location.y > fairy.position.y{
-                if fairy.position.y < 300 {
-                    fairy.run(fairyMoveUp)
-                }
-            } else {
-                 if fairy.position.y > 50 {
-                    fairy.run(fairyMoveDown)
-                }
-            }
-                
-        }
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for touch: AnyObject in touches {
+//            let location = touch.location(in: self)
+//            if location.y > fairy.position.y{
+//                if fairy.position.y < 300 {
+//                    fairy.run(fairyMoveUp)
+//                }
+//            } else {
+//                 if fairy.position.y > 50 {
+//                    fairy.run(fairyMoveDown)
+//                }
+//            }
+//                
+//        }
+//    }
     
 }
 
