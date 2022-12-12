@@ -5,7 +5,7 @@
 //  Created by antonia on 12/12/22.
 //
 
-import Foundationimport SpriteKit
+import SpriteKit
 
 struct Wave: Codable {
     struct WaveEnemy: Codable {
