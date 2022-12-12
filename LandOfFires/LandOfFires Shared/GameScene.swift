@@ -417,7 +417,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //                playerStateMachine.enter(JumpingState.self)
 //            }
 //        }
-        
+//
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
             if location.y > player.position.y {
