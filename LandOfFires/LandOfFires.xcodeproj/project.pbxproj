@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A10027029472478009546ED /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A10026E29472478009546ED /* Explosion.sks */; };
+		2A100273294727E9009546ED /* Starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A100272294727E9009546ED /* Starfield.sks */; };
+		2A10027529472A87009546ED /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10027429472A87009546ED /* MenuScene.swift */; };
+		2A10027729472AA0009546ED /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10027629472AA0009546ED /* GameOverScene.swift */; };
+		2A10027B29472B7C009546ED /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10027A29472B7C009546ED /* Bundle.swift */; };
+		2A10027D29472B92009546ED /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10027C29472B92009546ED /* Wave.swift */; };
+		2A10027F29472BA2009546ED /* EnemyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10027E29472BA2009546ED /* EnemyType.swift */; };
+		2A10028129472BBB009546ED /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10028029472BBB009546ED /* EnemyNode.swift */; };
 		2A5F2B95293F5BCF0056AAE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */; };
 		2A5F2B97293F5BCF0056AAE3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */; };
 		2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B98293F5BCF0056AAE3 /* Main.storyboard */; };
 		2A5F2B9D293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B9B293F5BCF0056AAE3 /* LaunchScreen.storyboard */; };
-		2A5F2BA5293F5BCF0056AAE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2BA4293F5BCF0056AAE3 /* AppDelegate.swift */; };
-		2A5F2BA7293F5BCF0056AAE3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2BA6293F5BCF0056AAE3 /* GameViewController.swift */; };
-		2A5F2BAA293F5BCF0056AAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2BA8293F5BCF0056AAE3 /* Main.storyboard */; };
-		2A5F2BAD293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2BAB293F5BCF0056AAE3 /* LaunchScreen.storyboard */; };
-		2A5F2BB5293F5BCF0056AAE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2BB4293F5BCF0056AAE3 /* AppDelegate.swift */; };
-		2A5F2BB7293F5BCF0056AAE3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2BB6293F5BCF0056AAE3 /* GameViewController.swift */; };
-		2A5F2BBA293F5BCF0056AAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2BB8293F5BCF0056AAE3 /* Main.storyboard */; };
 		2A5F2BBC293F5BCF0056AAE3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B89293F5BCD0056AAE3 /* Actions.sks */; };
 		2A5F2BBD293F5BCF0056AAE3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B89293F5BCD0056AAE3 /* Actions.sks */; };
 		2A5F2BBE293F5BCF0056AAE3 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B89293F5BCD0056AAE3 /* Actions.sks */; };
@@ -33,6 +34,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A10026E29472478009546ED /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		2A100272294727E9009546ED /* Starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Starfield.sks; sourceTree = "<group>"; };
+		2A10027429472A87009546ED /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		2A10027629472AA0009546ED /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		2A10027829472B17009546ED /* enemy-types.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = "enemy-types.geojson"; sourceTree = "<group>"; };
+		2A10027929472B2E009546ED /* waves.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = waves.geojson; sourceTree = "<group>"; };
+		2A10027A29472B7C009546ED /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		2A10027C29472B92009546ED /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
+		2A10027E29472BA2009546ED /* EnemyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
+		2A10028029472BBB009546ED /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
 		2A5F2B89293F5BCD0056AAE3 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -43,15 +54,7 @@
 		2A5F2B99293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A5F2B9C293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A5F2BA2293F5BCF0056AAE3 /* LandOfFires.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LandOfFires.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A5F2BA4293F5BCF0056AAE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A5F2BA6293F5BCF0056AAE3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		2A5F2BA9293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2A5F2BAC293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A5F2BB2293F5BCF0056AAE3 /* LandOfFires.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LandOfFires.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A5F2BB4293F5BCF0056AAE3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A5F2BB6293F5BCF0056AAE3 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		2A5F2BB9293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2A5F2BBB293F5BCF0056AAE3 /* LandOfFires_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LandOfFires_macOS.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				2A5F2B88293F5BCD0056AAE3 /* LandOfFires Shared */,
-				2A5F2B93293F5BCF0056AAE3 /* LandOfFires iOS */,
-				2A5F2BA3293F5BCF0056AAE3 /* LandOfFires tvOS */,
-				2A5F2BB3293F5BCF0056AAE3 /* LandOfFires macOS */,
 				2A5F2B92293F5BCF0056AAE3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,9 +93,23 @@
 		2A5F2B88293F5BCD0056AAE3 /* LandOfFires Shared */ = {
 			isa = PBXGroup;
 			children = (
+				2A5F2B98293F5BCF0056AAE3 /* Main.storyboard */,
+				2A5F2B9B293F5BCF0056AAE3 /* LaunchScreen.storyboard */,
+				2A10026E29472478009546ED /* Explosion.sks */,
+				2A100272294727E9009546ED /* Starfield.sks */,
 				2A5F2B89293F5BCD0056AAE3 /* Actions.sks */,
 				2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */,
 				2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */,
+				2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */,
+				2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */,
+				2A10027429472A87009546ED /* MenuScene.swift */,
+				2A10027629472AA0009546ED /* GameOverScene.swift */,
+				2A10027829472B17009546ED /* enemy-types.geojson */,
+				2A10027929472B2E009546ED /* waves.geojson */,
+				2A10027A29472B7C009546ED /* Bundle.swift */,
+				2A10027C29472B92009546ED /* Wave.swift */,
+				2A10027E29472BA2009546ED /* EnemyType.swift */,
+				2A10028029472BBB009546ED /* EnemyNode.swift */,
 				2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */,
 			);
 			path = "LandOfFires Shared";
@@ -109,39 +123,6 @@
 				2A5F2BB2293F5BCF0056AAE3 /* LandOfFires.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2A5F2B93293F5BCF0056AAE3 /* LandOfFires iOS */ = {
-			isa = PBXGroup;
-			children = (
-				2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */,
-				2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */,
-				2A5F2B98293F5BCF0056AAE3 /* Main.storyboard */,
-				2A5F2B9B293F5BCF0056AAE3 /* LaunchScreen.storyboard */,
-			);
-			path = "LandOfFires iOS";
-			sourceTree = "<group>";
-		};
-		2A5F2BA3293F5BCF0056AAE3 /* LandOfFires tvOS */ = {
-			isa = PBXGroup;
-			children = (
-				2A5F2BA4293F5BCF0056AAE3 /* AppDelegate.swift */,
-				2A5F2BA6293F5BCF0056AAE3 /* GameViewController.swift */,
-				2A5F2BA8293F5BCF0056AAE3 /* Main.storyboard */,
-				2A5F2BAB293F5BCF0056AAE3 /* LaunchScreen.storyboard */,
-			);
-			path = "LandOfFires tvOS";
-			sourceTree = "<group>";
-		};
-		2A5F2BB3293F5BCF0056AAE3 /* LandOfFires macOS */ = {
-			isa = PBXGroup;
-			children = (
-				2A5F2BB4293F5BCF0056AAE3 /* AppDelegate.swift */,
-				2A5F2BB6293F5BCF0056AAE3 /* GameViewController.swift */,
-				2A5F2BB8293F5BCF0056AAE3 /* Main.storyboard */,
-				2A5F2BBB293F5BCF0056AAE3 /* LandOfFires_macOS.entitlements */,
-			);
-			path = "LandOfFires macOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,7 +225,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A100273294727E9009546ED /* Starfield.sks in Resources */,
 				2A5F2BBF293F5BCF0056AAE3 /* GameScene.sks in Resources */,
+				2A10027029472478009546ED /* Explosion.sks in Resources */,
 				2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */,
 				2A5F2BBC293F5BCF0056AAE3 /* Actions.sks in Resources */,
 				2A5F2B9D293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */,
@@ -257,9 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A5F2BC0293F5BCF0056AAE3 /* GameScene.sks in Resources */,
-				2A5F2BAA293F5BCF0056AAE3 /* Main.storyboard in Resources */,
 				2A5F2BBD293F5BCF0056AAE3 /* Actions.sks in Resources */,
-				2A5F2BAD293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */,
 				2A5F2BC6293F5BCF0056AAE3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,7 +249,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A5F2BBA293F5BCF0056AAE3 /* Main.storyboard in Resources */,
 				2A5F2BC1293F5BCF0056AAE3 /* GameScene.sks in Resources */,
 				2A5F2BC7293F5BCF0056AAE3 /* Assets.xcassets in Resources */,
 				2A5F2BBE293F5BCF0056AAE3 /* Actions.sks in Resources */,
@@ -282,8 +262,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A10027729472AA0009546ED /* GameOverScene.swift in Sources */,
+				2A10027B29472B7C009546ED /* Bundle.swift in Sources */,
+				2A10027F29472BA2009546ED /* EnemyType.swift in Sources */,
 				2A5F2BC2293F5BCF0056AAE3 /* GameScene.swift in Sources */,
+				2A10027529472A87009546ED /* MenuScene.swift in Sources */,
+				2A10027D29472B92009546ED /* Wave.swift in Sources */,
 				2A5F2B97293F5BCF0056AAE3 /* GameViewController.swift in Sources */,
+				2A10028129472BBB009546ED /* EnemyNode.swift in Sources */,
 				2A5F2B95293F5BCF0056AAE3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,8 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A5F2BC3293F5BCF0056AAE3 /* GameScene.swift in Sources */,
-				2A5F2BA7293F5BCF0056AAE3 /* GameViewController.swift in Sources */,
-				2A5F2BA5293F5BCF0056AAE3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,8 +287,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A5F2BC4293F5BCF0056AAE3 /* GameScene.swift in Sources */,
-				2A5F2BB7293F5BCF0056AAE3 /* GameViewController.swift in Sources */,
-				2A5F2BB5293F5BCF0056AAE3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,30 +307,6 @@
 				2A5F2B9C293F5BCF0056AAE3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		2A5F2BA8293F5BCF0056AAE3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A5F2BA9293F5BCF0056AAE3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		2A5F2BAB293F5BCF0056AAE3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A5F2BAC293F5BCF0056AAE3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		2A5F2BB8293F5BCF0056AAE3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A5F2BB9293F5BCF0056AAE3 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
