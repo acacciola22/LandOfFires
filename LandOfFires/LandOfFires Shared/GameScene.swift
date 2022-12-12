@@ -58,8 +58,8 @@ class GameScene: SKScene {
         fairy.position = CGPoint(x: 100, y: 100)
         
         
-        fairyMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
-        fairyMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.2)
+        fairyMoveUp = SKAction.moveBy(x: 0, y: 100, duration: 0.5)
+        fairyMoveDown = SKAction.moveBy(x: 0, y: -100, duration: 0.5)
         
         self.addChild(fairy)
         
