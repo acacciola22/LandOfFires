@@ -13,7 +13,17 @@ class MenuScene: SKScene {
     override init(size: CGSize) {
         
         super.init(size: size)
-        self.backgroundColor = .blue
+      
+        for index in 0..<2 {
+            let bg = SKSpriteNode(imageNamed: "background")
+            bg.position = CGPoint(x: index * Int(bg.size.width), y: 0)
+            bg.anchorPoint = CGPoint(x: 0, y: 0)
+            bg.name = "background"
+            
+            self.addChild(bg)
+        }
+        
+        
         
         let label = SKLabelNode(fontNamed: "Cochin")
         label.text = " The Land Of Fires "
@@ -22,11 +32,13 @@ class MenuScene: SKScene {
         label.position = CGPoint(x: self.size.width/2 , y: self.size.height/2)
         self.addChild(label)
         
+
         
-        let startButton = SKLabelNode(fontNamed: "Cochin")
-        startButton.text = " START "
-        startButton.fontColor = .black
-        startButton.position = CGPoint(x: self.size.width/2 , y: 50)
+        let startButton = SKSpriteNode(imageNamed: "buttonStart")
+
+//        startButton.text = " START "
+//        startButton.fontColor = .black
+        startButton.position = CGPoint(x: self.size.width/2 , y: 90)
         startButton.name = " startButton "
         self.addChild(startButton)
         
@@ -50,3 +62,4 @@ class MenuScene: SKScene {
         fatalError("init")
     }
 }
+

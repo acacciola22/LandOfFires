@@ -7,20 +7,48 @@
 
 import CoreMotion
 import SpriteKit
+import GameplayKit
 
 enum CollisionType: UInt32 {
     case player = 1
     case playerWeapon = 2
     case enemy = 4
     case enemyWeapon = 8
+    case component = 16
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var gameViewControllerBridge: GameViewController!
+//    var gameViewControllerBridge: GameViewController!
     let motionManager = CMMotionManager()
     
-//    let player = SKSpriteNode(imageNamed: "player")
+    
+    var cam = SKCameraNode()
+    
+//    var joystick = SKSpriteNode()
+//    var joystickKnob = SKSpriteNode()
+//    var pad = SKSpriteNode()
+    
+    var joystick = SKNode(fileNamed: "joystick")
+   var joystickKnob = SKNode(fileNamed: "joystickKnob")
+    var pad = SKNode(fileNamed: "pad")
+    
+    let playerSpeed = 7.0
+    var joystickAction = false
+    
+    //MEASURE
+    var knobRadius : CGFloat = 25.0
+    //SPRITE ENGINE
+    var previousTimeInterval : TimeInterval = 0
+    var playerIsFacingRight = true
+//    let playerSpeed = 7.0
+    
+    //PLAYER STATE
+    var playerStateMachine : GKStateMachine!
+    
+    
+    
+    
     var player = SKSpriteNode()
     var playerMoveUp = SKAction()
     var playerMoveDown = SKAction()
@@ -34,8 +62,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let playerCategory = 0x1 << 0
     let enemyCategory = 0x1 << 1
-    let componentCategory = 0x1 << 0
-    let shootCategory = 0x1 << 0
+    let componentCategory = 0x1 << 2
+//    let shootCategory = 0x1 << 3
     
     
     let waves = Bundle.main.decode([Wave].self, from: "waves.geojson")
@@ -44,14 +72,80 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var isPlayerAlive = true
     var levelNumber = 0
     var waveNumber = 0
-    var playerShields = 10
+    
+    
+    
+    var playerShields = 10 //VITE
+    {
+        didSet
+        {
+            playerShieldsNode.text = "LifeS: \(playerShields)"
+            
+        }
+    }
+    
+    let playerShieldsNode : SKLabelNode = SKLabelNode(fontNamed: "Cooperplate-Bold")
+    
+    
+    
+    
+    
+    
+    var score: Int = -0
+    {
+        didSet
+        {
+            scoreNode.text = "Current score: \(score)"
+        }
+    }
+    
+    let scoreNode : SKLabelNode = SKLabelNode(fontNamed: "Cooperplate-Bold")
+    
 
     let positions = Array(stride(from: -320, through: 320, by: 80))
 
+    
+    
+    //MARK: DIDMOVE
+    
+    
     override func didMove(to view: SKView) {
-        physicsWorld.gravity = .zero
+//        physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
 
+        
+        
+        
+        //add score label
+        scoreNode.zPosition = 2
+        scoreNode.position.x = 120
+        scoreNode.position.y = 300
+        scoreNode.fontSize = 20
+        scoreNode.fontColor = .black
+        addChild(scoreNode)
+        score = 0
+        
+     
+        playerShieldsNode.zPosition = 2
+        playerShieldsNode.position.x = 250
+        playerShieldsNode.position.y = 300
+        playerShieldsNode.fontSize = 20
+        playerShieldsNode.fontColor = .red
+        addChild(playerShieldsNode)
+        playerShields = 10
+
+        enumerateChildNodes(withName: "c3", using: { [self]node, stop in
+            
+            //        COMPONENT PHYSICS
+            let  componentNode = node as! SKSpriteNode
+            componentNode.physicsBody = SKPhysicsBody (texture : componentNode.texture!, size: componentNode.size)
+            componentNode.physicsBody?.categoryBitMask = UInt32(self.playerCategory)
+            componentNode.physicsBody?.collisionBitMask = UInt32(self.componentCategory)
+            componentNode.physicsBody?.contactTestBitMask = UInt32(playerCategory)
+            componentNode.physicsBody?.affectedByGravity = false
+            
+        })
+        
         if let particles = SKEmitterNode(fileNamed: "Starfield") {
             particles.position = CGPoint(x: 1080, y: 0)
             particles.advanceSimulationTime(60)
@@ -59,21 +153,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(particles)
         }
 
-//        player.name = "player"
-//        player.position.x = frame.minX + 75
-//        player.zPosition = 1
-//        addChild(player)
-//
-//        player.physicsBody = SKPhysicsBody(texture: player.texture!, size: player.texture!.size())
-//        player.physicsBody?.categoryBitMask = CollisionType.player.rawValue
-//        player.physicsBody?.collisionBitMask = CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
-//        player.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
-//        player.physicsBody?.isDynamic = false
-//
-//        motionManager.startAccelerometerUpdates()
         
         addBackground()
         addPlayer()
+        addComponent()
+        
+        
+        
+        
+        scene!.run(SKAction.sequence([.wait(forDuration: 0.02) ,  .run {
+            let backgroundSound = SKAudioNode(fileNamed: "NectarPiano-Song")
+            self.addChild(backgroundSound)
+        } ]))
+
+//        joystick = SKSpriteNode(imageNamed: "joystick")
+//        addChild(joystick)
+//        joystickKnob = SKSpriteNode(imageNamed: "knob")
+//        addChild(joystickKnob)
+//        pad = SKSpriteNode(imageNamed: "pad")
+//        addChild(pad)
+//
+        
+//        cam = self.childNode(withName: "camera")! as! SKCameraNode
+//        self.camera = cam
+//
+//        joystick = cam
+//            .childNode(withName: "joystick") as! SKSpriteNode
+//        joystickKnob = cam
+//            .childNode(withName: "knob") as! SKSpriteNode
+//        pad = cam
+//            .childNode(withName: "pad") as! SKSpriteNode
+        
+        //: - PLAYER
+        player = self
+            .childNode(withName: "player") as! SKSpriteNode
+        joystick = childNode(withName: "joystick")
+        joystickKnob = joystick?.childNode(withName: "joy")
+        pad = childNode(withName: "pad")
+        playerStateMachine = GKStateMachine(states: [JumpingState(playerNode: player)])
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
@@ -82,38 +199,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
 
 
-//        func touchDown(atPoint pos: CGPoint) {
-//            jump()
-//        }
-//
-//        func jump() {
-//            player.texture = SKTexture(imageNamed: "player")
-//            player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
-//        }
-
-//        override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//            for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//        }
-//
-//        func touchUp(atPoint pos: CGPoint) {
-//            player.texture = SKTexture(imageNamed: "player")
-//        }
-
     override func update(_ currentTime: TimeInterval) {
-        
-        
-        self.moveBackground()
-        
-        
-        if let accelerometerData = motionManager.accelerometerData {
-            player.position.y += CGFloat(accelerometerData.acceleration.x * 50)
 
-            if player.position.y < frame.minY {
-                player.position.y = frame.minY
-            } else if player.position.y > frame.maxY {
-                player.position.y = frame.maxY
-            }
-        }
+
+        self.moveBackground()
+        self.moveComponents()
+
+//        if let accelerometerData = motionManager.accelerometerData {
+//            player.position.y += CGFloat(accelerometerData.acceleration.x * 100)
+//
+//            if player.position.y < frame.minY {
+//                player.position.y = frame.minY
+//            } else if player.position.y > frame.maxY {
+//                player.position.y = frame.maxY
+//            }
+//        }
 
         for child in children {
             if child.frame.maxX < 0 {
@@ -127,6 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if activeEnemies.isEmpty {
             createWave()
+            addComponent()
         }
 
         for enemy in activeEnemies {
@@ -143,6 +244,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let joystick = joystick else { return }
+        guard let joystickKnob = joystickKnob else { return }
+        
+        if !joystickAction { return }
+        
+        //DISTANCE
+        for touch in touches {
+            let position = touch.location(in: joystick)
+            
+            let lenght = sqrt(pow(position.x,2) + pow(position.y,2))
+            let angle = atan2(position.y, position.x)
+            
+            if knobRadius > lenght {
+                joystickKnob.position = position
+            } else {
+                joystickKnob.position = CGPoint(x: cos(angle) * knobRadius, y: sin(angle) * knobRadius)
+            }
+            
+            
+        }
+    }
 
 
     func createWave() {
@@ -178,6 +301,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
 
+    
+    func addComponent() {
+        let component = SKSpriteNode(imageNamed: "c3")
+        component.setScale(0.45)
+        component.physicsBody = SKPhysicsBody(rectangleOf: component.size)
+        component.physicsBody?.isDynamic = true
+        component.name = "component"
+        
+        component.physicsBody?.categoryBitMask = UInt32(componentCategory)
+        component.physicsBody?.contactTestBitMask = UInt32(playerCategory)
+        component.physicsBody?.collisionBitMask = 1
+        component.physicsBody?.usesPreciseCollisionDetection = true
+        
+        let random: CGFloat = CGFloat(arc4random_uniform(100))
+        component.position = CGPoint(x: self.frame.size.width + 20, y: random)
+        self.addChild(component)
+    }
+    
+    func moveComponents() {
+        self.enumerateChildNodes(withName: "component", using: { (node, stop) -> Void in
+            if let component = node as? SKSpriteNode {
+                component.position = CGPoint(x: component.position.x - self.enemyVelocity, y: component.position.y)
+                
+                if component.position.x < 0  {
+                    component.removeFromParent()
+                }
+            }
+
+            
+        })
+    }
+    
 
 
     func didBegin(_ contact: SKPhysicsContact) {
@@ -200,6 +355,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             if playerShields == 0 {
                 gameOver()
+                updateHighScore(with: score)
 //                let gameOverScene = GameOverScene(size: self.size)
 //                self.view?.presentScene(gameOverScene, transition: .doorway(withDuration: 1))
 //                secondNode.removeFromParent()
@@ -214,24 +370,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     explosion.position = enemy.position
                     addChild(explosion)
                 }
-
                 enemy.removeFromParent()
             }
 
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {
                 explosion.position = enemy.position
                 addChild(explosion)
-            }
 
+            }
+            
             secondNode.removeFromParent()
         } else {
-            if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+            if let explosion = SKEmitterNode(fileNamed: "MyParticle") {
                 explosion.position = secondNode.position
                 addChild(explosion)
+                score += 1
             }
-
             firstNode.removeFromParent()
             secondNode.removeFromParent()
+        }
+        
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        if (nodeA.name == "component" && nodeB == player) || (nodeA == player && nodeB.name == "component") {
+            
+            if contact.bodyB.node?.name == "component"{
+                score += 10
+                contact.bodyB.node?.removeFromParent()
+            }
+            
         }
     }
 
@@ -239,7 +406,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        guard isPlayerAlive else { return }
 
      //   for t in touches { self.touchDown(atPoint: t.location(in: self))}
-        
+//        for touch in touches {
+//            if let joystickKnob = joystickKnob {
+//                let location = touch.location(in: joystick!)
+//                joystickAction = joystickKnob.frame.contains(location)
+//            }
+//
+//            let location = touch.location(in: self)
+//            if !(joystick?.contains(location))! {
+//                playerStateMachine.enter(JumpingState.self)
+//            }
+//        }
         
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
@@ -247,41 +424,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if player.position.y < 500 {
                     player.run(playerMoveUp)
                     shoot()
+
                 }
             } else {
                 if player.position.y > 50 {
                     player.run(playerMoveDown)
                     shoot()
+
                 }
             }
         }
 
-//        let shot = SKSpriteNode(imageNamed: "playerWeapon")
-//        shot.name = "playerWeapon"
-//        shot.position = player.position
-//
-//        shot.physicsBody = SKPhysicsBody(rectangleOf: shot.size)
-//        shot.physicsBody?.categoryBitMask = CollisionType.playerWeapon.rawValue
-//        shot.physicsBody?.collisionBitMask = CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
-//        shot.physicsBody?.contactTestBitMask = CollisionType.enemy.rawValue | CollisionType.enemyWeapon.rawValue
-//        addChild(shot)
-//
-//        let movement = SKAction.move(to: CGPoint(x: 1900, y: shot.position.y), duration: 5)
-//        let sequence = SKAction.sequence([movement, .removeFromParent()])
-//        shot.run(sequence)
-
-
     }
+    
+
     
     func shoot() {
         
         let projectile = SKSpriteNode(imageNamed: "playerWeapon")
+        projectile.setScale(0.25)
         projectile.zPosition = 1
         projectile.position = CGPoint(x: player.position.x, y: player.position.y)
+        
+        
 
         projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
         projectile.physicsBody?.isDynamic = true
-        projectile.physicsBody?.categoryBitMask = UInt32(shootCategory)
+        projectile.physicsBody?.categoryBitMask = UInt32(playerCategory)
         projectile.physicsBody?.contactTestBitMask = UInt32(enemyCategory)
         projectile.physicsBody?.collisionBitMask = 1
         projectile.physicsBody?.usesPreciseCollisionDetection = true
@@ -303,82 +472,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(explosion)
         }
 
-//        let gameOver = SKSpriteNode(imageNamed: "gameOver")
-//        addChild(gameOver)
         
-        let gameOverScene = GameOverScene(size: self.size)
-        self.view?.presentScene(gameOverScene, transition: .doorway(withDuration: 1))
+        let scoreScene = ScoreScene(size: self.size)
+        scoreScene.score = score
+        updateHighScore(with: score)
+        self.view?.presentScene(scoreScene, transition: .doorway(withDuration: 0.5))
     }
 
 
-//    func reloadGame(){
-//
-//        coinObject.removeAllChildren()
-//        redCoinObject.removeAllChildren()
-//        movingObject.removeAllChildren()
-//        heroObject.removeAllChildren()
-//
-//        levelLabel.text = "Level 1"
-//        gameOver = 0
-//
-//        scene?.isPaused = false
-//
-//        coinObject.speed = 1
-//        redCoinObject.speed = 1
-//        heroObject.speed = 1
-//        movingObject.speed = 1
-//        self.speed = 1
-//
-//        if labelObject.children.count != 0{
-//            labelObject.removeAllChildren()
-//        }
-//
-//        createBackground()
-//        createLowerBorderForNodes()
-//        createUpperBorderForNodes()
-//        createHero()
-//        createEngineFlames()
-//
-//        score = 0
-//        scoreLabel.text = "0"
-//        levelLabel.isHidden = false
-//        highScoreTextLabel.isHidden = true
-//
-//        showHighScore()
-//
-//        timerForAddingCoin.invalidate()
-//        timerForAddingRedCoin.invalidate()
-//        timerForElectricGate.invalidate()
-//        timerForMine.invalidate()
-//        timerForShieldItem.invalidate()
-//
-//        timerFunc()
-//
-//    }
-
     
     func addPlayer () {
-        
+//        physicsWorld.gravity = .zero
         player = SKSpriteNode(imageNamed: "player")
         player.setScale(0.40)
-//        player.zRotation = CGFloat(-3/2)
+        player.zRotation = CGFloat(-3/2)
         
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
-        player.physicsBody?.isDynamic = true
-        
+        player.physicsBody?.isDynamic = false
+        player.physicsBody?.affectedByGravity = false
         
         // collision
         player.physicsBody?.categoryBitMask = UInt32(playerCategory)
         player.physicsBody?.contactTestBitMask = UInt32(enemyCategory)
-        player.physicsBody?.collisionBitMask = 0
+        player.physicsBody?.collisionBitMask = 1
         
         
         player.name = "player"
         player.position = CGPoint(x: 120, y: 160)
         
         
-        playerMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
-        playerMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.2)
+        playerMoveUp = SKAction.moveBy(x: 0, y: 70, duration: 0.1)
+        playerMoveDown = SKAction.moveBy(x: 0, y: -70, duration: 0.1)
         self.addChild(player)
     }
     
@@ -409,7 +533,92 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         })
     }
     
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for touch in touches {
+//            let xJoystickCoordinate = touch.location(in: joystick!).x
+//            let xLimit: CGFloat = 200.0
+//            if xJoystickCoordinate > -xLimit && xJoystickCoordinate < xLimit {
+//                resetKnobPosition()
+//            }
+//
+//        }
+//    }
     
 }
 
 
+//ACTION
+
+//extension GameScene{
+//    func resetKnobPosition () {
+//        let initialPoint = CGPoint(x: 0, y: 0)
+//        let moveBack = SKAction.move(to: initialPoint, duration: 0.1)
+//        moveBack.timingMode = .linear
+//        joystickKnob?.run(moveBack)
+//        joystickAction = false
+//    }
+//}
+//
+//
+//// GAMELOOP
+//
+//extension GameScene{
+//
+//    override func update(_ currentTime: TimeInterval) {
+//
+//
+//
+//
+//            self.moveBackground()
+//            self.moveComponents()
+//
+//            if let accelerometerData = motionManager.accelerometerData {
+//                player.position.y += CGFloat(accelerometerData.acceleration.x * 100)
+//
+//                if player.position.y < frame.minY {
+//                    player.position.y = frame.minY
+//                } else if player.position.y > frame.maxY {
+//                    player.position.y = frame.maxY
+//                }
+//            }
+//
+//            for child in children {
+//                if child.frame.maxX < 0 {
+//                    if !frame.intersects(child.frame) {
+//                        child.removeFromParent()
+//                    }
+//                }
+//            }
+//
+//            let activeEnemies = children.compactMap { $0 as? EnemyNode }
+//
+//            if activeEnemies.isEmpty {
+//                createWave()
+//                addComponent()
+//            }
+//
+//            for enemy in activeEnemies {
+//                guard frame.intersects(enemy.frame) else { continue }
+//
+//                if enemy.lastFireTime + 1 < currentTime {
+//                    enemy.lastFireTime = currentTime
+//
+//                    if Int.random(in: 0...6) == 0 {
+//                        enemy.fire()
+//                    }
+//                }
+//            }
+//
+//        let deltaTime = currentTime - previousTimeInterval
+//        previousTimeInterval = currentTime
+//
+//        // PLAYER MOV
+//        guard let joystickKnob = joystickKnob else {return}
+//        let xPosition = Double(joystickKnob.position.x)
+//        let displacement = CGVector(dx: deltaTime * xPosition * playerSpeed, dy: 0)
+//        let move = SKAction.move(by: displacement, duration: 0)
+//
+//
+//        player.run(move)
+//    }
+//}
