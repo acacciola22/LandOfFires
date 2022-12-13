@@ -309,7 +309,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addAttackButton() {
         attackButton = SKSpriteNode(imageNamed: "pad")
-        attackButton.setScale(0.70)
+        attackButton.setScale(2)
        
         
 //        attackButton.physicsBody = SKPhysicsBody(rectangleOf: player.size)
