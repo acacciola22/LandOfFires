@@ -99,8 +99,8 @@
 				2A10027C29472B92009546ED /* Wave.swift */,
 				2A10027E29472BA2009546ED /* EnemyType.swift */,
 				2A10028029472BBB009546ED /* EnemyNode.swift */,
-				2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */,
 				C9CEEE91294731210063F185 /* Utilities.swift */,
+				2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */,
 			);
 			path = "LandOfFires Shared";
 			sourceTree = "<group>";
