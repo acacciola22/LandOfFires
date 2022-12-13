@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A2228BB29492CC90076BD73 /* fairy in Resources */ = {isa = PBXBuildFile; fileRef = 2A2228BA29492CC90076BD73 /* fairy */; };
 		2A5F2B95293F5BCF0056AAE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */; };
 		2A5F2B97293F5BCF0056AAE3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */; };
 		2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B98293F5BCF0056AAE3 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A2228BA29492CC90076BD73 /* fairy */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fairy; sourceTree = "<group>"; };
 		2A5F2B89293F5BCD0056AAE3 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				2A5F2B89293F5BCD0056AAE3 /* Actions.sks */,
 				2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */,
 				2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */,
+				2A2228BA29492CC90076BD73 /* fairy */,
 				2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */,
 			);
 			path = "LandOfFires Shared";
@@ -205,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A2228BB29492CC90076BD73 /* fairy in Resources */,
 				2A5F2BBF293F5BCF0056AAE3 /* GameScene.sks in Resources */,
 				2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */,
 				2A5F2BBC293F5BCF0056AAE3 /* Actions.sks in Resources */,

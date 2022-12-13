@@ -21,11 +21,35 @@ class GameScene: SKScene {
     let swipeUp = UISwipeGestureRecognizer()
     let swipeDown = UISwipeGestureRecognizer()
     
+    // FATINA ANIMATA
+    var TextureAtlas = SKTextureAtlas()
+    var TextureArray = [SKTexture]()
+    
+    var MainFairy = SKSpriteNode()
+    
     override func didMove(to view: SKView) {
+        
+        TextureAtlas = SKTextureAtlas(named: "fairy")
+        
+//        NSLog("\(TextureAtlas.textureNames)")
+        
+        for i in 1...TextureAtlas.textureNames.count{
+            var Name = "fatina_\(i).png"
+            TextureArray.append(SKTexture(imageNamed: Name))
+        }
+        
+        MainFairy = SKSpriteNode(imageNamed: TextureAtlas.textureNames[0] )
+        MainFairy.size = CGSize(width: 40, height: 50)
+        MainFairy.position = CGPoint(x: 120, y: 100)
+        MainFairy.physicsBody?.isDynamic = true
+        MainFairy.physicsBody = SKPhysicsBody(rectangleOf: fairy.size)
+        
+        
         self.backgroundColor = .white
         self.addBackground()
-        self.addFairy()
+//        self.addFairy()
         self.addWheel()
+        
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
@@ -48,22 +72,22 @@ class GameScene: SKScene {
      }
     
     
-    func addFairy() {
-        fairy = SKSpriteNode(imageNamed: "fairy")
-        fairy.setScale(0.25)
-        
-        fairy.physicsBody = SKPhysicsBody(rectangleOf: fairy.size)
-        fairy.physicsBody?.isDynamic = true
-        fairy.name = "fairy"
-        fairy.position = CGPoint(x: 100, y: 100)
-        
-        
-        fairyMoveUp = SKAction.moveBy(x: 0, y: +200, duration: 0.5)
-        fairyMoveDown = SKAction.moveBy(x: 0, y: -200, duration: 0.5)
-        
-        self.addChild(fairy)
-        
-    }
+//    func addFairy() {
+//        fairy = SKSpriteNode(imageNamed: "fairy")
+//        fairy.setScale(0.25)
+//
+//        fairy.physicsBody = SKPhysicsBody(rectangleOf: fairy.size)
+//        fairy.physicsBody?.isDynamic = true
+//        fairy.name = "fairy"
+//        fairy.position = CGPoint(x: 100, y: 100)
+//
+//
+//        fairyMoveUp = SKAction.moveBy(x: 0, y: +200, duration: 0.5)
+//        fairyMoveDown = SKAction.moveBy(x: 0, y: -200, duration: 0.5)
+//
+//        self.addChild(fairy)
+//
+//    }
 
     func addBackground() {
         for index in 0..<2{
@@ -127,22 +151,10 @@ class GameScene: SKScene {
         }
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch: AnyObject in touches {
-//            let location = touch.location(in: self)
-//            if location.y > fairy.position.y{
-//                if fairy.position.y < 300 {
-//                    fairy.run(fairyMoveUp)
-//                }
-//            } else {
-//                 if fairy.position.y > 50 {
-//                    fairy.run(fairyMoveDown)
-//                }
-//            }
-//                
-//        }
-//    }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+            MainFairy.run(SKAction.repeatForever(SKAction.animate(with: TextureArray, timePerFrame: 0.3)))
+    }
 }
 
 
