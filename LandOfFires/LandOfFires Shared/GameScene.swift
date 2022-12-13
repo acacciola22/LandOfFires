@@ -92,9 +92,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     let positions = Array(stride(from: -320, through: 320, by: 80))
 
-    
-    let swipeUp = UISwipeGestureRecognizer()
-    let swipeDown = UISwipeGestureRecognizer()
+    //SWIPEEEE
+//    let swipeUp = UISwipeGestureRecognizer()
+//    let swipeDown = UISwipeGestureRecognizer()
 
     
     //MARK: DIDMOVE
@@ -152,14 +152,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
-        
-        swipeUp.addTarget(self, action: #selector(self.swipedUp))
-        swipeUp.direction = .up
-        view.addGestureRecognizer(swipeUp)
-        
-        swipeDown.addTarget(self, action: #selector(self.swipedDown))
-        swipeDown.direction = .down
-        view.addGestureRecognizer(swipeDown)
+        //SWIPEEEY
+//        swipeUp.addTarget(self, action: #selector(self.swipedUp))
+//        swipeUp.direction = .up
+//        view.addGestureRecognizer(swipeUp)
+//
+//        swipeDown.addTarget(self, action: #selector(self.swipedDown))
+//        swipeDown.direction = .down
+//        view.addGestureRecognizer(swipeDown)
         
         
         scene!.run(SKAction.sequence([.wait(forDuration: 0.02) ,  .run {
@@ -398,47 +398,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     //MARK: commentato per usare swipe
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//       guard isPlayerAlive else { return }
-//
-//     //   for t in touches { self.touchDown(atPoint: t.location(in: self))}
-////        for touch in touches {
-////            if let joystickKnob = joystickKnob {
-////                let location = touch.location(in: joystick!)
-////                joystickAction = joystickKnob.frame.contains(location)
-////            }
-////
-////            let location = touch.location(in: self)
-////            if !(joystick?.contains(location))! {
-////                playerStateMachine.enter(JumpingState.self)
-////            }
-////        }
-//
-//        for touch: AnyObject in touches {
-//            let location = touch.location(in: self)
-//            if location.y > player.position.y {
-//                if player.position.y < 500 {
-//                    player.run(playerMoveUp)
-//                    shoot()
-//
-//                }
-//            } else {
-//                if player.position.y > 50 {
-//                    player.run(playerMoveDown)
-//                    shoot()
-//
-//                }
-//            }
-//        }
-//
-//    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (touches.first != nil)
-        {
-            shoot()
+       guard isPlayerAlive else { return }
+
+
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            let node = self.atPoint(location)
+            
+            if (node.name == "attackButton") {
+                shoot()
+            } else{
+                if location.y > player.position.y {
+                    if player.position.y < 500 {
+                        player.run(playerMoveUp)
+                       
+
+                    }
+                } else {
+                    if player.position.y > 50 {
+                        player.run(playerMoveDown)
+                        
+
+                    }
+                }
+            }
+              
         }
+
     }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if (touches.first != nil)
+//        {
+//            shoot()
+//        }
+//    }
     
 
     func shoot() {
@@ -486,8 +481,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addPlayer () {
 //        physicsWorld.gravity = .zero
         player = SKSpriteNode(imageNamed: "player")
-        player.setScale(0.40)
-        player.zRotation = CGFloat(-3/2)
+        
+        player.setScale(0.30)
+//        player.zRotation = CGFloat(-3/2)
         
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
         player.physicsBody?.isDynamic = false
