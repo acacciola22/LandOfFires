@@ -24,13 +24,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     var cam = SKCameraNode()
  
-    var pad = SKNode(fileNamed: "pad")
+    var attackButton = SKNode()
 
     let playerSpeed = 7.0
-    var joystickAction = false
-    
-    //MEASURE
-    var knobRadius : CGFloat = 25.0
+
     
     //SPRITE ENGINE
     var previousTimeInterval : TimeInterval = 0
@@ -54,7 +51,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let playerCategory = 0x1 << 0
     let enemyCategory = 0x1 << 1
     let componentCategory = 0x1 << 2
-//    let shootCategory = 0x1 << 3
+    let shootCategory = 0x1 << 3
     
     
     let waves = Bundle.main.decode([Wave].self, from: "waves.geojson")
@@ -119,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(scoreNode)
         score = 0
         
-     
+        //add lifes label
         playerShieldsNode.zPosition = 2
         playerShieldsNode.position.x = 250
         playerShieldsNode.position.y = 300
@@ -151,6 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addBackground()
         self.addPlayer()
         self.addComponent()
+        self.addAttackButton()
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
@@ -172,8 +170,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         
         //: - PLAYER
-        player = self
-            .childNode(withName: "player") as! SKSpriteNode
+//        player = self
+//            .childNode(withName: "player") as! SKSpriteNode
 
         playerStateMachine = GKStateMachine(states: [JumpingState(playerNode: player)])
         
@@ -306,6 +304,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
 
+    
+    
+    
+    func addAttackButton() {
+        attackButton = SKSpriteNode(imageNamed: "pad")
+        attackButton.setScale(0.70)
+       
+        
+//        attackButton.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        attackButton.physicsBody?.isDynamic = false
+        attackButton.physicsBody?.affectedByGravity = false
+        
+
+        
+        
+        attackButton.name = "attackButton"
+        attackButton.position = CGPoint(x: 780, y: 50)
+        
+    
+        self.addChild(attackButton)
+    }
 
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else { return }
@@ -415,37 +434,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch: AnyObject in touches {
-            let location = touch.location(in: self)
-            let node = self.nodes(at: location).first
-            if node?.name == " startButton " {
-                let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
-                let scene = GameScene(size: self.view!.bounds.size)
-                scene.scaleMode = .aspectFill
-                self.view?.presentScene(scene, transition:  reveal)
-            }
+        if (touches.first != nil)
+        {
+            shoot()
         }
     }
     
-//    }
-//
-//    func touchDown(atPoint pos: CGPoint) {
-//        jump()
-//    }
-//
-//    func jump() {
-////        player.texture = SKTexture(imageNamed: "player")
-//        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
-//    }
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-//    }
-//
-//    func touchUp(atPoint pos: CGPoint) {
-////        player.texture = SKTexture(imageNamed: "player")
-//    }
-    
+
     func shoot() {
         
         let projectile = SKSpriteNode(imageNamed: "playerWeapon")
