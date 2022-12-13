@@ -499,8 +499,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = CGPoint(x: 120, y: 160)
         
         
-        playerMoveUp = SKAction.moveBy(x: 0, y: 100, duration: 0.4)
-        playerMoveDown = SKAction.moveBy(x: 0, y: -100, duration: 0.4)
+        playerMoveUp = SKAction.moveBy(x: 0, y: 40, duration: 0.4)
+        playerMoveDown = SKAction.moveBy(x: 0, y: -40, duration: 0.4)
         self.addChild(player)
     }
     
