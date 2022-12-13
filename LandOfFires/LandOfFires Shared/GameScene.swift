@@ -21,32 +21,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
 //    var gameViewControllerBridge: GameViewController!
     let motionManager = CMMotionManager()
-    
-    
+
     var cam = SKCameraNode()
-    
-//    var joystick = SKSpriteNode()
-//    var joystickKnob = SKSpriteNode()
-//    var pad = SKSpriteNode()
-    
-    var joystick = SKNode(fileNamed: "joystick")
-   var joystickKnob = SKNode(fileNamed: "joystickKnob")
+ 
     var pad = SKNode(fileNamed: "pad")
-    
+
     let playerSpeed = 7.0
     var joystickAction = false
     
     //MEASURE
     var knobRadius : CGFloat = 25.0
+    
     //SPRITE ENGINE
     var previousTimeInterval : TimeInterval = 0
     var playerIsFacingRight = true
-//    let playerSpeed = 7.0
     
     //PLAYER STATE
     var playerStateMachine : GKStateMachine!
-    
-    
     
     
     var player = SKSpriteNode()
@@ -105,6 +96,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let positions = Array(stride(from: -320, through: 320, by: 80))
 
     
+    let swipeUp = UISwipeGestureRecognizer()
+    let swipeDown = UISwipeGestureRecognizer()
+
     
     //MARK: DIDMOVE
     
@@ -153,12 +147,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(particles)
         }
 
+
+        self.addBackground()
+        self.addPlayer()
+        self.addComponent()
         
-        addBackground()
-        addPlayer()
-        addComponent()
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
         
+        swipeUp.addTarget(self, action: #selector(self.swipedUp))
+        swipeUp.direction = .up
+        view.addGestureRecognizer(swipeUp)
+        
+        swipeDown.addTarget(self, action: #selector(self.swipedDown))
+        swipeDown.direction = .down
+        view.addGestureRecognizer(swipeDown)
         
         
         scene!.run(SKAction.sequence([.wait(forDuration: 0.02) ,  .run {
@@ -166,30 +169,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(backgroundSound)
         } ]))
 
-//        joystick = SKSpriteNode(imageNamed: "joystick")
-//        addChild(joystick)
-//        joystickKnob = SKSpriteNode(imageNamed: "knob")
-//        addChild(joystickKnob)
-//        pad = SKSpriteNode(imageNamed: "pad")
-//        addChild(pad)
-//
-        
-//        cam = self.childNode(withName: "camera")! as! SKCameraNode
-//        self.camera = cam
-//
-//        joystick = cam
-//            .childNode(withName: "joystick") as! SKSpriteNode
-//        joystickKnob = cam
-//            .childNode(withName: "knob") as! SKSpriteNode
-//        pad = cam
-//            .childNode(withName: "pad") as! SKSpriteNode
+
         
         //: - PLAYER
         player = self
             .childNode(withName: "player") as! SKSpriteNode
-        joystick = childNode(withName: "joystick")
-        joystickKnob = joystick?.childNode(withName: "joy")
-        pad = childNode(withName: "pad")
+
         playerStateMachine = GKStateMachine(states: [JumpingState(playerNode: player)])
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -197,7 +182,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         motionManager.startAccelerometerUpdates()
     }
 
-
+    @objc func swipedUp() {
+        shoot()
+        player.run(playerMoveUp)
+     }
+     
+     @objc func swipedDown() {
+         shoot()
+         player.run(playerMoveDown)
+      }
+     
 
     override func update(_ currentTime: TimeInterval) {
 
@@ -244,28 +238,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let joystick = joystick else { return }
-        guard let joystickKnob = joystickKnob else { return }
-        
-        if !joystickAction { return }
-        
-        //DISTANCE
-        for touch in touches {
-            let position = touch.location(in: joystick)
-            
-            let lenght = sqrt(pow(position.x,2) + pow(position.y,2))
-            let angle = atan2(position.y, position.x)
-            
-            if knobRadius > lenght {
-                joystickKnob.position = position
-            } else {
-                joystickKnob.position = CGPoint(x: cos(angle) * knobRadius, y: sin(angle) * knobRadius)
-            }
-            
-            
-        }
-    }
 
 
     func createWave() {
@@ -349,6 +321,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {
                 explosion.position = firstNode.position
                 addChild(explosion)
+               
             }
 
             playerShields -= 1
@@ -356,9 +329,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if playerShields == 0 {
                 gameOver()
                 updateHighScore(with: score)
-//                let gameOverScene = GameOverScene(size: self.size)
-//                self.view?.presentScene(gameOverScene, transition: .doorway(withDuration: 1))
-//                secondNode.removeFromParent()
             }
 
             firstNode.removeFromParent()
@@ -376,7 +346,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {
                 explosion.position = enemy.position
                 addChild(explosion)
-
+                score += 1
             }
             
             secondNode.removeFromParent()
@@ -396,48 +366,85 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if contact.bodyB.node?.name == "component"{
                 score += 10
+                playerShields += 1
                 contact.bodyB.node?.removeFromParent()
             }
             
         }
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-       guard isPlayerAlive else { return }
-
-     //   for t in touches { self.touchDown(atPoint: t.location(in: self))}
-//        for touch in touches {
-//            if let joystickKnob = joystickKnob {
-//                let location = touch.location(in: joystick!)
-//                joystickAction = joystickKnob.frame.contains(location)
-//            }
+    
+    
+    
+    
+    
+    //MARK: commentato per usare swipe
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//       guard isPlayerAlive else { return }
 //
+//     //   for t in touches { self.touchDown(atPoint: t.location(in: self))}
+////        for touch in touches {
+////            if let joystickKnob = joystickKnob {
+////                let location = touch.location(in: joystick!)
+////                joystickAction = joystickKnob.frame.contains(location)
+////            }
+////
+////            let location = touch.location(in: self)
+////            if !(joystick?.contains(location))! {
+////                playerStateMachine.enter(JumpingState.self)
+////            }
+////        }
+//
+//        for touch: AnyObject in touches {
 //            let location = touch.location(in: self)
-//            if !(joystick?.contains(location))! {
-//                playerStateMachine.enter(JumpingState.self)
+//            if location.y > player.position.y {
+//                if player.position.y < 500 {
+//                    player.run(playerMoveUp)
+//                    shoot()
+//
+//                }
+//            } else {
+//                if player.position.y > 50 {
+//                    player.run(playerMoveDown)
+//                    shoot()
+//
+//                }
 //            }
 //        }
 //
+//    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
-            if location.y > player.position.y {
-                if player.position.y < 500 {
-                    player.run(playerMoveUp)
-                    shoot()
-
-                }
-            } else {
-                if player.position.y > 50 {
-                    player.run(playerMoveDown)
-                    shoot()
-
-                }
+            let node = self.nodes(at: location).first
+            if node?.name == " startButton " {
+                let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = GameScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition:  reveal)
             }
         }
-
     }
     
-
+//    }
+//
+//    func touchDown(atPoint pos: CGPoint) {
+//        jump()
+//    }
+//
+//    func jump() {
+////        player.texture = SKTexture(imageNamed: "player")
+//        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 500))
+//    }
+//
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+//    }
+//
+//    func touchUp(atPoint pos: CGPoint) {
+////        player.texture = SKTexture(imageNamed: "player")
+//    }
     
     func shoot() {
         
@@ -501,8 +508,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = CGPoint(x: 120, y: 160)
         
         
-        playerMoveUp = SKAction.moveBy(x: 0, y: 70, duration: 0.1)
-        playerMoveDown = SKAction.moveBy(x: 0, y: -70, duration: 0.1)
+        playerMoveUp = SKAction.moveBy(x: 0, y: 100, duration: 0.4)
+        playerMoveDown = SKAction.moveBy(x: 0, y: -100, duration: 0.4)
         self.addChild(player)
     }
     
@@ -532,93 +539,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         })
     }
-    
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            let xJoystickCoordinate = touch.location(in: joystick!).x
-//            let xLimit: CGFloat = 200.0
-//            if xJoystickCoordinate > -xLimit && xJoystickCoordinate < xLimit {
-//                resetKnobPosition()
-//            }
-//
-//        }
-//    }
-    
 }
 
 
-//ACTION
 
-//extension GameScene{
-//    func resetKnobPosition () {
-//        let initialPoint = CGPoint(x: 0, y: 0)
-//        let moveBack = SKAction.move(to: initialPoint, duration: 0.1)
-//        moveBack.timingMode = .linear
-//        joystickKnob?.run(moveBack)
-//        joystickAction = false
-//    }
-//}
-//
-//
-//// GAMELOOP
-//
-//extension GameScene{
-//
-//    override func update(_ currentTime: TimeInterval) {
-//
-//
-//
-//
-//            self.moveBackground()
-//            self.moveComponents()
-//
-//            if let accelerometerData = motionManager.accelerometerData {
-//                player.position.y += CGFloat(accelerometerData.acceleration.x * 100)
-//
-//                if player.position.y < frame.minY {
-//                    player.position.y = frame.minY
-//                } else if player.position.y > frame.maxY {
-//                    player.position.y = frame.maxY
-//                }
-//            }
-//
-//            for child in children {
-//                if child.frame.maxX < 0 {
-//                    if !frame.intersects(child.frame) {
-//                        child.removeFromParent()
-//                    }
-//                }
-//            }
-//
-//            let activeEnemies = children.compactMap { $0 as? EnemyNode }
-//
-//            if activeEnemies.isEmpty {
-//                createWave()
-//                addComponent()
-//            }
-//
-//            for enemy in activeEnemies {
-//                guard frame.intersects(enemy.frame) else { continue }
-//
-//                if enemy.lastFireTime + 1 < currentTime {
-//                    enemy.lastFireTime = currentTime
-//
-//                    if Int.random(in: 0...6) == 0 {
-//                        enemy.fire()
-//                    }
-//                }
-//            }
-//
-//        let deltaTime = currentTime - previousTimeInterval
-//        previousTimeInterval = currentTime
-//
-//        // PLAYER MOV
-//        guard let joystickKnob = joystickKnob else {return}
-//        let xPosition = Double(joystickKnob.position.x)
-//        let displacement = CGVector(dx: deltaTime * xPosition * playerSpeed, dy: 0)
-//        let move = SKAction.move(by: displacement, duration: 0)
-//
-//
-//        player.run(move)
-//    }
-//}

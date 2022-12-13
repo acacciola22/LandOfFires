@@ -63,7 +63,7 @@ class ScoreScene : SKScene {
     }
     
     private func goToEndGame() -> Void{
-        let transition = SKTransition.doorway(withDuration: 10)
+        let transition = SKTransition.doorway(withDuration: 2)
         let restartScene = GameOverScene(size: size)
 //        restartScene.gameScore = score
 //        restartScene.size = CGSize(width: 300, height: 400)
