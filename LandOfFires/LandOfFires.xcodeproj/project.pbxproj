@@ -27,6 +27,9 @@
 		2A5F2BC5293F5BCF0056AAE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */; };
 		C9A10BAB294A4A7000085075 /* HowToPlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A10BAA294A4A7000085075 /* HowToPlayScene.swift */; };
 		C9A10BAD294A4ABA00085075 /* ScoreSceneGameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A10BAC294A4ABA00085075 /* ScoreSceneGameOver.swift */; };
+		C9A10BAF294A4D0900085075 /* 2Credits.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BAE294A4D0900085075 /* 2Credits.ttf */; };
+		C9A10BB1294A4D1900085075 /* STV5730A.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BB0294A4D1900085075 /* STV5730A.ttf */; };
+		C9A10BB4294A4E3700085075 /* Videogame1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BB3294A4E3700085075 /* Videogame1.wav */; };
 		C9CEEE92294731210063F185 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE91294731210063F185 /* Utilities.swift */; };
 		C9CEEE94294731790063F185 /* PlayerStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE93294731790063F185 /* PlayerStateMachine.swift */; };
 		C9CEEE962947319F0063F185 /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE952947319F0063F185 /* ScoreScene.swift */; };
@@ -55,6 +58,10 @@
 		2A5F2B9C293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9A10BAA294A4A7000085075 /* HowToPlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayScene.swift; sourceTree = "<group>"; };
 		C9A10BAC294A4ABA00085075 /* ScoreSceneGameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSceneGameOver.swift; sourceTree = "<group>"; };
+		C9A10BAE294A4D0900085075 /* 2Credits.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2Credits.ttf; path = ../../../../../Downloads/2Credits.ttf; sourceTree = "<group>"; };
+		C9A10BB0294A4D1900085075 /* STV5730A.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = STV5730A.ttf; path = ../../../../../Downloads/STV5730A.ttf; sourceTree = "<group>"; };
+		C9A10BB2294A4D5D00085075 /* LandOfFires-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LandOfFires-iOS-Info.plist"; sourceTree = "<group>"; };
+		C9A10BB3294A4E3700085075 /* Videogame1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Videogame1.wav; path = ../../../../../Downloads/Videogame1.wav; sourceTree = "<group>"; };
 		C9CEEE91294731210063F185 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C9CEEE93294731790063F185 /* PlayerStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateMachine.swift; sourceTree = "<group>"; };
 		C9CEEE952947319F0063F185 /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
@@ -75,6 +82,7 @@
 		2A5F2B83293F5BCD0056AAE3 = {
 			isa = PBXGroup;
 			children = (
+				C9A10BB2294A4D5D00085075 /* LandOfFires-iOS-Info.plist */,
 				2A5F2B88293F5BCD0056AAE3 /* LandOfFires Shared */,
 				2A5F2B92293F5BCF0056AAE3 /* Products */,
 			);
@@ -107,6 +115,9 @@
 				2A10028029472BBB009546ED /* EnemyNode.swift */,
 				C9CEEE91294731210063F185 /* Utilities.swift */,
 				2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */,
+				C9A10BAE294A4D0900085075 /* 2Credits.ttf */,
+				C9A10BB0294A4D1900085075 /* STV5730A.ttf */,
+				C9A10BB3294A4E3700085075 /* Videogame1.wav */,
 			);
 			path = "LandOfFires Shared";
 			sourceTree = "<group>";
@@ -178,9 +189,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A100273294727E9009546ED /* Starfield.sks in Resources */,
+				C9A10BAF294A4D0900085075 /* 2Credits.ttf in Resources */,
 				2A5F2BBF293F5BCF0056AAE3 /* GameScene.sks in Resources */,
 				2A10027029472478009546ED /* Explosion.sks in Resources */,
 				2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */,
+				C9A10BB1294A4D1900085075 /* STV5730A.ttf in Resources */,
+				C9A10BB4294A4E3700085075 /* Videogame1.wav in Resources */,
 				2A5F2BBC293F5BCF0056AAE3 /* Actions.sks in Resources */,
 				2A10028329472FFA009546ED /* waves.geojson in Resources */,
 				2A5F2B9D293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */,
@@ -354,10 +368,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7UYK6M3ATF;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LandOfFires-iOS-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -386,10 +400,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7UYK6M3ATF;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LandOfFires-iOS-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
