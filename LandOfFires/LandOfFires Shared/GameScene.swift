@@ -107,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //punti vite
         imageVite.zPosition = 2
-        imageVite.position.x = 290
+        imageVite.position.x = 295
         imageVite.position.y = 305
         addChild(imageVite)
         
