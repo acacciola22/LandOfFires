@@ -63,31 +63,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
+    let playerShieldsNode : SKLabelNode = SKLabelNode(fontNamed: "Cooperplate-Bold")
+    let imageVite = SKSpriteNode(imageNamed: "Vite")
+    
     var playerShields = 10 //VITE
     {
         didSet
         {
-            playerShieldsNode.text = "LifeS: \(playerShields)"
+            playerShieldsNode.text = "Life: \(playerShields)"
+//            imageVite.
             
         }
     }
     
-    let playerShieldsNode : SKLabelNode = SKLabelNode(fontNamed: "Cooperplate-Bold")
     
     
-    
-    
-    
+    let scoreNode: SKLabelNode = SKLabelNode(fontNamed: "Cooperplate-Bold")
     
     var score: Int = -0
     {
         didSet
         {
             scoreNode.text = "Current score: \(score)"
+            
         }
     }
     
-    let scoreNode : SKLabelNode = SKLabelNode(fontNamed: "Cooperplate-Bold")
     
 
     let positions = Array(stride(from: -320, through: 320, by: 80))
@@ -103,9 +104,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
 //        physicsWorld.gravity = .zero
         physicsWorld.contactDelegate = self
-
         
-        
+        //punti vite
+        imageVite.zPosition = 2
+        imageVite.position.x = 290
+        imageVite.position.y = 305
+        addChild(imageVite)
         
         //add score label
         scoreNode.zPosition = 2
@@ -149,6 +153,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addPlayer()
         self.addComponent()
         self.addAttackButton()
+        
+        
+        let frame1 = SKTexture(imageNamed: "fatina1")
+        let frame2 = SKTexture(imageNamed: "fatina2")
+        let frame3 = SKTexture(imageNamed: "fatina3")
+        let frame4 = SKTexture(imageNamed: "fatina4")
+        
+        player.run(SKAction.repeatForever(
+            SKAction.animate(with: [frame1,frame2,frame3,frame4],
+                             timePerFrame: 0.3,
+                             resize: false,
+                             restore: true)),
+                 withKey:"iconAnimate")
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
@@ -483,8 +500,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player = SKSpriteNode(imageNamed: "player")
         
         player.setScale(0.30)
-//        player.zRotation = CGFloat(-3/2)
-        
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
         player.physicsBody?.isDynamic = false
         player.physicsBody?.affectedByGravity = false
