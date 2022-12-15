@@ -1,9 +1,3 @@
-//
-//  CreditsScene.swift
-//  LandOfFires iOS
-//
-//  Created by Rita Marrano on 15/12/22.
-//
 
 //
 //  CreditsScene.swift
@@ -16,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class CreditsScene: SKScene {
-    
+    let buttonSound = SKAction.playSoundFileNamed("bottone", waitForCompletion: false)
     override init(size: CGSize) {
         
         super.init(size: size)
@@ -57,6 +51,7 @@ class CreditsScene: SKScene {
             let node = self.nodes(at: location).first
             
             if (node?.name == " backButton ") {
+                run(buttonSound)
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
                 let scene = MenuScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill

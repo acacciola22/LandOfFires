@@ -31,6 +31,12 @@
 		C9A10BB1294A4D1900085075 /* STV5730A.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BB0294A4D1900085075 /* STV5730A.ttf */; };
 		C9A10BB4294A4E3700085075 /* Videogame1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BB3294A4E3700085075 /* Videogame1.wav */; };
 		C9A10BB8294B2EAB00085075 /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A10BB7294B2EAB00085075 /* CreditsScene.swift */; };
+		C9A10BC0294B362500085075 /* bottone.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BBA294B362500085075 /* bottone.wav */; };
+		C9A10BC1294B362500085075 /* sparo.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BBB294B362500085075 /* sparo.wav */; };
+		C9A10BC2294B362500085075 /* magia.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BBC294B362500085075 /* magia.wav */; };
+		C9A10BC3294B362500085075 /* ruota.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BBD294B362500085075 /* ruota.wav */; };
+		C9A10BC4294B362500085075 /* magnete.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BBE294B362500085075 /* magnete.wav */; };
+		C9A10BC5294B362500085075 /* morte.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BBF294B362500085075 /* morte.wav */; };
 		C9CEEE92294731210063F185 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE91294731210063F185 /* Utilities.swift */; };
 		C9CEEE94294731790063F185 /* PlayerStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE93294731790063F185 /* PlayerStateMachine.swift */; };
 		C9CEEE962947319F0063F185 /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE952947319F0063F185 /* ScoreScene.swift */; };
@@ -64,6 +70,12 @@
 		C9A10BB2294A4D5D00085075 /* LandOfFires-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LandOfFires-iOS-Info.plist"; sourceTree = "<group>"; };
 		C9A10BB3294A4E3700085075 /* Videogame1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Videogame1.wav; path = ../../../../../Downloads/Videogame1.wav; sourceTree = "<group>"; };
 		C9A10BB7294B2EAB00085075 /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
+		C9A10BBA294B362500085075 /* bottone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bottone.wav; sourceTree = "<group>"; };
+		C9A10BBB294B362500085075 /* sparo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sparo.wav; sourceTree = "<group>"; };
+		C9A10BBC294B362500085075 /* magia.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = magia.wav; sourceTree = "<group>"; };
+		C9A10BBD294B362500085075 /* ruota.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ruota.wav; sourceTree = "<group>"; };
+		C9A10BBE294B362500085075 /* magnete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = magnete.wav; sourceTree = "<group>"; };
+		C9A10BBF294B362500085075 /* morte.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = morte.wav; sourceTree = "<group>"; };
 		C9CEEE91294731210063F185 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C9CEEE93294731790063F185 /* PlayerStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateMachine.swift; sourceTree = "<group>"; };
 		C9CEEE952947319F0063F185 /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
@@ -121,6 +133,7 @@
 				C9A10BAE294A4D0900085075 /* 2Credits.ttf */,
 				C9A10BB0294A4D1900085075 /* STV5730A.ttf */,
 				C9A10BB3294A4E3700085075 /* Videogame1.wav */,
+				C9A10BB9294B362500085075 /* LOF SFX */,
 			);
 			path = "LandOfFires Shared";
 			sourceTree = "<group>";
@@ -131,6 +144,19 @@
 				2A5F2B91293F5BCF0056AAE3 /* LandOfFires.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C9A10BB9294B362500085075 /* LOF SFX */ = {
+			isa = PBXGroup;
+			children = (
+				C9A10BBA294B362500085075 /* bottone.wav */,
+				C9A10BBB294B362500085075 /* sparo.wav */,
+				C9A10BBC294B362500085075 /* magia.wav */,
+				C9A10BBD294B362500085075 /* ruota.wav */,
+				C9A10BBE294B362500085075 /* magnete.wav */,
+				C9A10BBF294B362500085075 /* morte.wav */,
+			);
+			path = "LOF SFX";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,15 +220,21 @@
 				2A100273294727E9009546ED /* Starfield.sks in Resources */,
 				C9A10BAF294A4D0900085075 /* 2Credits.ttf in Resources */,
 				2A5F2BBF293F5BCF0056AAE3 /* GameScene.sks in Resources */,
+				C9A10BC5294B362500085075 /* morte.wav in Resources */,
 				2A10027029472478009546ED /* Explosion.sks in Resources */,
+				C9A10BC4294B362500085075 /* magnete.wav in Resources */,
+				C9A10BC2294B362500085075 /* magia.wav in Resources */,
+				C9A10BC0294B362500085075 /* bottone.wav in Resources */,
 				2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */,
 				C9A10BB1294A4D1900085075 /* STV5730A.ttf in Resources */,
 				C9A10BB4294A4E3700085075 /* Videogame1.wav in Resources */,
+				C9A10BC3294B362500085075 /* ruota.wav in Resources */,
 				2A5F2BBC293F5BCF0056AAE3 /* Actions.sks in Resources */,
 				2A10028329472FFA009546ED /* waves.geojson in Resources */,
 				2A5F2B9D293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */,
 				2A10028229472FF7009546ED /* enemy-types.geojson in Resources */,
 				2A5F2BC5293F5BCF0056AAE3 /* Assets.xcassets in Resources */,
+				C9A10BC1294B362500085075 /* sparo.wav in Resources */,
 				C9CEEE98294733320063F185 /* MyParticle.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

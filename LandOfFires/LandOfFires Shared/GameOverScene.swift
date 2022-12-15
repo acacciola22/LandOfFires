@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameOverScene: SKScene {
     
+    let buttonSound = SKAction.playSoundFileNamed("bottone", waitForCompletion: false)
     let scores = loadScores()
     var score : Int = 0
 //    var gameScore : Int = 0
@@ -89,11 +90,13 @@ class GameOverScene: SKScene {
             
             
             if node?.name == " REPLAY " {
+                run(buttonSound)
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 1)
                 let scene = GameScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill
                 self.view?.presentScene(scene, transition:  reveal)
             } else if node?.name == " homeButton "{
+                run(buttonSound)
                     let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 1)
                     let scene = MenuScene(size: self.view!.bounds.size)
                     scene.scaleMode = .aspectFill

@@ -22,7 +22,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //    var gameViewControllerBridge: GameViewController!
     //    let motionManager = CMMotionManager()
     
+    //MARK: - SOUNDS
     
+    let buttonSound = SKAction.playSoundFileNamed("bottone", waitForCompletion: false)
+    let hitSound = SKAction.playSoundFileNamed("sparo", waitForCompletion: false)
+    let deathEnemy = SKAction.playSoundFileNamed("ruota", waitForCompletion: false)
+    let gameOverSound = SKAction.playSoundFileNamed("morte", waitForCompletion: false)
+    let startClickSound = SKAction.playSoundFileNamed("startclick", waitForCompletion: false)
     
     
     var pausedGame = false
@@ -367,7 +373,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 addChild(explosion)
                
             }
-
+            run (deathEnemy)
             playerShields -= 1
 
             if playerShields == 0 {
@@ -378,6 +384,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstNode.removeFromParent()
             
         } else if let enemy = firstNode as? EnemyNode {
+            
             enemy.shields -= 1
 
             if enemy.shields == 0 {
@@ -397,6 +404,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {//qua forse
                 explosion.position = secondNode.position
+                run (deathEnemy)
                 addChild(explosion)
                 score += 6
             }
@@ -434,6 +442,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if(node.name == " pauseButton "){
                 if isPaused {return}
+                run(buttonSound)
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
                 isPaused = true
@@ -448,7 +457,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 resumeButton.name = " resumeButton "
                 self.addChild(resumeButton)
             }else if (node.name == " resumeButton "){
-                
+                run(buttonSound)
                 if !isPaused {return}
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
                 impactMed.impactOccurred()
@@ -470,6 +479,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     shoot()
                 }else {
                     if (node.name == "resumeButton") {
+                        run(buttonSound)
                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
                         impactMed.impactOccurred() //MARK CONTROLLARE SE FUNZIONA
                         isPaused = false
@@ -534,6 +544,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         self.addChild(projectile)
+        run (hitSound)
         let action = SKAction.moveTo(x: self.frame.width + projectile.size.width, duration: 0.5)
 
         projectile.run(action, completion: {
@@ -547,6 +558,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if let explosion = SKEmitterNode(fileNamed: "Explosion") {
             explosion.position = player.position
+            run (gameOverSound)
             addChild(explosion)
         }
 

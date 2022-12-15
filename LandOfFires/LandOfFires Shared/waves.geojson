@@ -105,17 +105,17 @@
             {
                 "position": 0,
                 "xOffset": 8,
-                "moveStraight": false
+                "moveStraight": true
             },
             {
                 "position": 6,
                 "xOffset": 9,
-                "moveStraight": false
+                "moveStraight": true
             },
             {
                 "position": 7,
                 "xOffset": 9,
-                "moveStraight": false
+                "moveStraight": true
             },
             {
                 "position": 8,

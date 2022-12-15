@@ -9,7 +9,7 @@ import Foundation
 import SpriteKit
 
 class HowToPlayScene: SKScene {
-    
+    let buttonSound = SKAction.playSoundFileNamed("bottone", waitForCompletion: false)
     override init(size: CGSize) {
         
         super.init(size: size)
@@ -50,6 +50,7 @@ class HowToPlayScene: SKScene {
             let node = self.nodes(at: location).first
             
             if (node?.name == " backButton ") {
+                run(buttonSound)
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
                 let scene = MenuScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill
