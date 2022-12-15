@@ -58,7 +58,11 @@ class MenuScene: SKScene {
         
         
         //CREDITS BUTTON
-        
+        let creditsButton = SKSpriteNode(imageNamed: "credits")
+        creditsButton.setScale(3.5)
+        creditsButton.position = CGPoint(x: self.size.width - 50, y: 50)
+        creditsButton.name = " buttonCredits "
+        self.addChild(creditsButton)
         
     }
     
@@ -80,6 +84,11 @@ class MenuScene: SKScene {
             }else if (node?.name == " buttonHow ") {
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
                 let scene = HowToPlayScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition:  reveal)
+            }else if (node?.name == " buttonCredits ") {
+                let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = CreditsScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill
                 self.view?.presentScene(scene, transition:  reveal)
             }
