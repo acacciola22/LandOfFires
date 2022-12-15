@@ -24,23 +24,40 @@ class MenuScene: SKScene {
         }
         
         
-        
-        let label = SKLabelNode(fontNamed: "Cochin")
+        //TITLE
+        let label = SKLabelNode(fontNamed: "2Credits")
         label.text = " The Land Of Fires "
-        label.fontSize = 40
-        label.fontColor = .white
-        label.position = CGPoint(x: self.size.width/2 , y: self.size.height/2)
+        label.fontSize = 80
+        label.fontColor = .black
+        label.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + 40)
         self.addChild(label)
         
 
-        
+        //STARTBUTTON
         let startButton = SKSpriteNode(imageNamed: "buttonStart")
-
-//        startButton.text = " START "
-//        startButton.fontColor = .black
-        startButton.position = CGPoint(x: self.size.width/2 , y: 90)
+        startButton.setScale(3.5)
+        startButton.position = CGPoint(x: self.size.width/2 , y: 140)
         startButton.name = " startButton "
         self.addChild(startButton)
+        
+        
+        //SCORES BUTTON
+        let scoreButton = SKSpriteNode(imageNamed: "buttonScore")
+        scoreButton.setScale(3.5)
+        scoreButton.position = CGPoint(x: self.size.width/2 , y: 60)
+        scoreButton.name = " buttonScore "
+        self.addChild(scoreButton)
+        
+        
+        //HOW PLAY BUTTON
+        let playButton = SKSpriteNode(imageNamed: "howplay")
+        playButton.setScale(2.5)
+        playButton.position = CGPoint(x: self.size.width - 50, y: 330)
+        playButton.name = " buttonHow "
+        self.addChild(playButton)
+        
+        
+        //CREDITS BUTTON
         
         
     }
@@ -49,9 +66,20 @@ class MenuScene: SKScene {
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
             let node = self.nodes(at: location).first
-            if node?.name == " startButton " {
+            
+            if (node?.name == " startButton ") {
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
                 let scene = GameScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition:  reveal)
+            }else if (node?.name == " buttonScore "){
+                let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = ScoreScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition:  reveal)
+            }else if (node?.name == " buttonHow ") {
+                let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = HowToPlayScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill
                 self.view?.presentScene(scene, transition:  reveal)
             }

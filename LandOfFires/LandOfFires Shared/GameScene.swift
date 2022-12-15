@@ -1,8 +1,8 @@
 //
 //  GameScene.swift
-//  LandOfFires Shared
+//  Merdina
 //
-//  Created by antonia on 06/12/22.
+//  Created by Rita Marrano on 03/12/22.
 //
 
 import CoreMotion
@@ -20,7 +20,7 @@ enum CollisionType: UInt32 {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
 //    var gameViewControllerBridge: GameViewController!
-    let motionManager = CMMotionManager()
+//    let motionManager = CMMotionManager()
 
     var cam = SKCameraNode()
  
@@ -61,9 +61,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var levelNumber = 0
     var waveNumber = 0
     
+    let sound = SKAction.playSoundFileNamed("Videogame1", waitForCompletion: false)
     
-    
-    var playerShields = 10 //VITE
+    var playerShields = 20 //VITE
     {
         didSet
         {
@@ -72,9 +72,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    let playerShieldsNode : SKLabelNode = SKLabelNode(fontNamed: "Cooperplate-Bold")
+    let playerShieldsNode : SKLabelNode = SKLabelNode(fontNamed: "STV5730A")
     
-    
+    let imageVite = SKSpriteNode(imageNamed: "vite")
     
     
     
@@ -87,7 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    let scoreNode : SKLabelNode = SKLabelNode(fontNamed: "Cooperplate-Bold")
+    let scoreNode : SKLabelNode = SKLabelNode(fontNamed: "STV5730A")
     
 
     let positions = Array(stride(from: -320, through: 320, by: 80))
@@ -105,25 +105,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
 
         
+        scene!.run(SKAction.sequence([.wait(forDuration: 0.02) ,  .run {
+            let backgroundSound = SKAudioNode(fileNamed: "Videogame1")
+            self.addChild(backgroundSound)
+        } ]))
+        
+        
+        
+        
+        //punti vite
+        imageVite.zPosition = 2
+        imageVite.position.x = 295
+        imageVite.position.y = 305
+        addChild(imageVite)
         
         
         //add score label
         scoreNode.zPosition = 2
-        scoreNode.position.x = 120
+        scoreNode.position.x = 140
         scoreNode.position.y = 300
         scoreNode.fontSize = 20
         scoreNode.fontColor = .black
         addChild(scoreNode)
         score = 0
         
+        
+        
+        
         //add lifes label
         playerShieldsNode.zPosition = 2
-        playerShieldsNode.position.x = 250
+        playerShieldsNode.position.x = 340
         playerShieldsNode.position.y = 300
         playerShieldsNode.fontSize = 20
         playerShieldsNode.fontColor = .red
         addChild(playerShieldsNode)
-        playerShields = 10
+        playerShields = 20
 
         enumerateChildNodes(withName: "c3", using: { [self]node, stop in
             
@@ -150,16 +166,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addComponent()
         self.addAttackButton()
         
-        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
-        //SWIPEEEY
-//        swipeUp.addTarget(self, action: #selector(self.swipedUp))
-//        swipeUp.direction = .up
-//        view.addGestureRecognizer(swipeUp)
-//
-//        swipeDown.addTarget(self, action: #selector(self.swipedDown))
-//        swipeDown.direction = .down
-//        view.addGestureRecognizer(swipeDown)
+        let frame1 = SKTexture(imageNamed: "fatina1")
+        let frame2 = SKTexture(imageNamed: "fatina2")
+        let frame3 = SKTexture(imageNamed: "fatina3")
+        let frame4 = SKTexture(imageNamed: "fatina4")
+        
+        
+        player.run(SKAction.repeatForever(
+            SKAction.animate(with: [frame1,frame2,frame3,frame4],
+                             timePerFrame: 0.3,
+                             resize: false,
+                             restore: true)),
+                 withKey:"iconAnimate")
+        
+        
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         
         
         scene!.run(SKAction.sequence([.wait(forDuration: 0.02) ,  .run {
@@ -168,28 +190,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } ]))
 
 
-        
-        //: - PLAYER
-//        player = self
-//            .childNode(withName: "player") as! SKSpriteNode
-
-        playerStateMachine = GKStateMachine(states: [JumpingState(playerNode: player)])
-        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
-        motionManager.startAccelerometerUpdates()
+
     }
 
-    @objc func swipedUp() {
-        shoot()
-        player.run(playerMoveUp)
-     }
-     
-     @objc func swipedDown() {
-         shoot()
-         player.run(playerMoveDown)
-      }
-     
 
     override func update(_ currentTime: TimeInterval) {
 
@@ -197,15 +202,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.moveBackground()
         self.moveComponents()
 
-//        if let accelerometerData = motionManager.accelerometerData {
-//            player.position.y += CGFloat(accelerometerData.acceleration.x * 100)
-//
-//            if player.position.y < frame.minY {
-//                player.position.y = frame.minY
-//            } else if player.position.y > frame.maxY {
-//                player.position.y = frame.maxY
-//            }
-//        }
 
         for child in children {
             if child.frame.maxX < 0 {
@@ -255,11 +251,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let enemyType = Int.random(in: 0..<maximumEnemyType)
 
         let enemyOffesetX: CGFloat = 100
-        let enemyStartX = 600
+        let enemyStartX = 800
 
         if currentWave.enemies.isEmpty {
             for (index, position) in positions.shuffled().enumerated(){
-                let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffesetX * CGFloat(index * 3), moveStraight: true)
+                let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffesetX * CGFloat(index * 5), moveStraight: true)
                 addChild(enemy)
             }} else {
                 for enemy in currentWave.enemies {
@@ -273,7 +269,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     func addComponent() {
-        let component = SKSpriteNode(imageNamed: "c3")
+ 
+        
+        let component = SKSpriteNode(imageNamed: "battery")
         component.setScale(0.45)
         component.physicsBody = SKPhysicsBody(rectangleOf: component.size)
         component.physicsBody?.isDynamic = true
@@ -284,8 +282,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         component.physicsBody?.collisionBitMask = 1
         component.physicsBody?.usesPreciseCollisionDetection = true
         
+        
+        let frame1 = SKTexture(imageNamed: "b1")
+        let frame2 = SKTexture(imageNamed: "b2")
+        let frame3 = SKTexture(imageNamed: "b3")
+        let frame4 = SKTexture(imageNamed: "b4")
+        
+        
+        component.run(SKAction.repeatForever(
+            SKAction.animate(with: [frame1,frame2,frame3,frame4],
+                             timePerFrame: 0.3,
+                             resize: false,
+                             restore: true)),
+                 withKey:"iconAnimate")
+        
+        
+        
+        
+        
+        
         let random: CGFloat = CGFloat(arc4random_uniform(100))
-        component.position = CGPoint(x: self.frame.size.width + 20, y: random)
+        component.position = CGPoint(x: self.frame.size.width + random, y: random)
         self.addChild(component)
     }
     
@@ -310,15 +327,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addAttackButton() {
         attackButton = SKSpriteNode(imageNamed: "pad")
         attackButton.setScale(2)
-       
-        
-//        attackButton.physicsBody = SKPhysicsBody(rectangleOf: player.size)
         attackButton.physicsBody?.isDynamic = false
         attackButton.physicsBody?.affectedByGravity = false
-        
-
-        
-        
+          
         attackButton.name = "attackButton"
         attackButton.position = CGPoint(x: 780, y: 50)
         
@@ -351,6 +362,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
 
             firstNode.removeFromParent()
+            
         } else if let enemy = firstNode as? EnemyNode {
             enemy.shields -= 1
 
@@ -365,22 +377,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {
                 explosion.position = enemy.position
                 addChild(explosion)
-                score += 1
             }
             
             secondNode.removeFromParent()
         } else {
-            if let explosion = SKEmitterNode(fileNamed: "MyParticle") {
+            if let explosion = SKEmitterNode(fileNamed: "Explosion") {//qua forse
                 explosion.position = secondNode.position
                 addChild(explosion)
-                score += 1
+                score += 6
             }
             firstNode.removeFromParent()
             secondNode.removeFromParent()
         }
         
-        guard let nodeA = contact.bodyA.node else { return }
-        guard let nodeB = contact.bodyB.node else { return }
         if (nodeA.name == "component" && nodeB == player) || (nodeA == player && nodeB.name == "component") {
             
             if contact.bodyB.node?.name == "component"{
@@ -390,7 +399,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
-    }
+        
+}
 
     
     
@@ -407,8 +417,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let node = self.atPoint(location)
             
             if (node.name == "attackButton") {
+                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                    impactMed.impactOccurred() //MARK CONTROLLARE SE FUNZIONA
                 shoot()
-            } else{
+            } else {
                 if location.y > player.position.y {
                     if player.position.y < 500 {
                         player.run(playerMoveUp)
@@ -428,20 +440,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        if (touches.first != nil)
-//        {
-//            shoot()
-//        }
-//    }
-    
+
 
     func shoot() {
         
-        let projectile = SKSpriteNode(imageNamed: "playerWeapon")
-        projectile.setScale(0.25)
+        let projectile = SKSpriteNode(imageNamed: "batteryshoot")
+        projectile.setScale(0.35)
         projectile.zPosition = 1
-        projectile.position = CGPoint(x: player.position.x, y: player.position.y)
+        projectile.position = CGPoint(x: (player.position.x) + player.size.width, y: (player.position.y)-15)
         
         
 
@@ -451,6 +457,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.contactTestBitMask = UInt32(enemyCategory)
         projectile.physicsBody?.collisionBitMask = 1
         projectile.physicsBody?.usesPreciseCollisionDetection = true
+        
+        
+        
+        
+        let frame1 = SKTexture(imageNamed: "bs1")
+        let frame2 = SKTexture(imageNamed: "bs2")
+        let frame3 = SKTexture(imageNamed: "bs3")
+        let frame4 = SKTexture(imageNamed: "bs4")
+        
+        
+        projectile.run(SKAction.repeatForever(
+            SKAction.animate(with: [frame1,frame2,frame3,frame4],
+                             timePerFrame: 0.3,
+                             resize: false,
+                             restore: true)),
+                 withKey:"iconAnimate")
+        
+        
+        
+        
+        
         
         self.addChild(projectile)
         let action = SKAction.moveTo(x: self.frame.width + projectile.size.width, duration: 0.5)
@@ -470,10 +497,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         
-        let scoreScene = ScoreScene(size: self.size)
-        scoreScene.score = score
+        let gameOverScene = ScoreSceneGameOver(size: self.size)
+        gameOverScene.score = score
         updateHighScore(with: score)
-        self.view?.presentScene(scoreScene, transition: .doorway(withDuration: 0.5))
+        self.view?.presentScene(gameOverScene, transition: .doorway(withDuration: 0.5))
     }
 
 
@@ -499,9 +526,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = CGPoint(x: 120, y: 160)
         
         
-        playerMoveUp = SKAction.moveBy(x: 0, y: 40, duration: 0.4)
-        playerMoveDown = SKAction.moveBy(x: 0, y: -40, duration: 0.4)
+        playerMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
+        playerMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.2)
         self.addChild(player)
+        
     }
     
     
