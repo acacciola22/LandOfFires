@@ -17,6 +17,9 @@
 		2A10028129472BBB009546ED /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10028029472BBB009546ED /* EnemyNode.swift */; };
 		2A10028229472FF7009546ED /* enemy-types.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 2A10027829472B17009546ED /* enemy-types.geojson */; };
 		2A10028329472FFA009546ED /* waves.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 2A10027929472B2E009546ED /* waves.geojson */; };
+		2A41B556294B1B5E00500EDA /* STV5730A.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A41B553294B1B5E00500EDA /* STV5730A.ttf */; };
+		2A41B557294B1B5E00500EDA /* Videogame1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2A41B554294B1B5E00500EDA /* Videogame1.wav */; };
+		2A41B558294B1B5E00500EDA /* 2Credits.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A41B555294B1B5E00500EDA /* 2Credits.ttf */; };
 		2A5F2B95293F5BCF0056AAE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */; };
 		2A5F2B97293F5BCF0056AAE3 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */; };
 		2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B98293F5BCF0056AAE3 /* Main.storyboard */; };
@@ -27,9 +30,6 @@
 		2A5F2BC5293F5BCF0056AAE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */; };
 		C9A10BAB294A4A7000085075 /* HowToPlayScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A10BAA294A4A7000085075 /* HowToPlayScene.swift */; };
 		C9A10BAD294A4ABA00085075 /* ScoreSceneGameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A10BAC294A4ABA00085075 /* ScoreSceneGameOver.swift */; };
-		C9A10BAF294A4D0900085075 /* 2Credits.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BAE294A4D0900085075 /* 2Credits.ttf */; };
-		C9A10BB1294A4D1900085075 /* STV5730A.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BB0294A4D1900085075 /* STV5730A.ttf */; };
-		C9A10BB4294A4E3700085075 /* Videogame1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BB3294A4E3700085075 /* Videogame1.wav */; };
 		C9CEEE92294731210063F185 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE91294731210063F185 /* Utilities.swift */; };
 		C9CEEE94294731790063F185 /* PlayerStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE93294731790063F185 /* PlayerStateMachine.swift */; };
 		C9CEEE962947319F0063F185 /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE952947319F0063F185 /* ScoreScene.swift */; };
@@ -47,6 +47,9 @@
 		2A10027C29472B92009546ED /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		2A10027E29472BA2009546ED /* EnemyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyType.swift; sourceTree = "<group>"; };
 		2A10028029472BBB009546ED /* EnemyNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyNode.swift; sourceTree = "<group>"; };
+		2A41B553294B1B5E00500EDA /* STV5730A.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = STV5730A.ttf; path = ../../../assets/STV5730A.ttf; sourceTree = "<group>"; };
+		2A41B554294B1B5E00500EDA /* Videogame1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Videogame1.wav; path = ../../../assets/Videogame1.wav; sourceTree = "<group>"; };
+		2A41B555294B1B5E00500EDA /* 2Credits.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2Credits.ttf; path = ../../../assets/2Credits.ttf; sourceTree = "<group>"; };
 		2A5F2B89293F5BCD0056AAE3 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -58,10 +61,7 @@
 		2A5F2B9C293F5BCF0056AAE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9A10BAA294A4A7000085075 /* HowToPlayScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayScene.swift; sourceTree = "<group>"; };
 		C9A10BAC294A4ABA00085075 /* ScoreSceneGameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSceneGameOver.swift; sourceTree = "<group>"; };
-		C9A10BAE294A4D0900085075 /* 2Credits.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2Credits.ttf; path = ../../../../../Downloads/2Credits.ttf; sourceTree = "<group>"; };
-		C9A10BB0294A4D1900085075 /* STV5730A.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = STV5730A.ttf; path = ../../../../../Downloads/STV5730A.ttf; sourceTree = "<group>"; };
 		C9A10BB2294A4D5D00085075 /* LandOfFires-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LandOfFires-iOS-Info.plist"; sourceTree = "<group>"; };
-		C9A10BB3294A4E3700085075 /* Videogame1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Videogame1.wav; path = ../../../../../Downloads/Videogame1.wav; sourceTree = "<group>"; };
 		C9CEEE91294731210063F185 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C9CEEE93294731790063F185 /* PlayerStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateMachine.swift; sourceTree = "<group>"; };
 		C9CEEE952947319F0063F185 /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
@@ -115,9 +115,9 @@
 				2A10028029472BBB009546ED /* EnemyNode.swift */,
 				C9CEEE91294731210063F185 /* Utilities.swift */,
 				2A5F2B8C293F5BCF0056AAE3 /* Assets.xcassets */,
-				C9A10BAE294A4D0900085075 /* 2Credits.ttf */,
-				C9A10BB0294A4D1900085075 /* STV5730A.ttf */,
-				C9A10BB3294A4E3700085075 /* Videogame1.wav */,
+				2A41B555294B1B5E00500EDA /* 2Credits.ttf */,
+				2A41B553294B1B5E00500EDA /* STV5730A.ttf */,
+				2A41B554294B1B5E00500EDA /* Videogame1.wav */,
 			);
 			path = "LandOfFires Shared";
 			sourceTree = "<group>";
@@ -189,12 +189,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A100273294727E9009546ED /* Starfield.sks in Resources */,
-				C9A10BAF294A4D0900085075 /* 2Credits.ttf in Resources */,
 				2A5F2BBF293F5BCF0056AAE3 /* GameScene.sks in Resources */,
+				2A41B557294B1B5E00500EDA /* Videogame1.wav in Resources */,
 				2A10027029472478009546ED /* Explosion.sks in Resources */,
 				2A5F2B9A293F5BCF0056AAE3 /* Main.storyboard in Resources */,
-				C9A10BB1294A4D1900085075 /* STV5730A.ttf in Resources */,
-				C9A10BB4294A4E3700085075 /* Videogame1.wav in Resources */,
+				2A41B558294B1B5E00500EDA /* 2Credits.ttf in Resources */,
+				2A41B556294B1B5E00500EDA /* STV5730A.ttf in Resources */,
 				2A5F2BBC293F5BCF0056AAE3 /* Actions.sks in Resources */,
 				2A10028329472FFA009546ED /* waves.geojson in Resources */,
 				2A5F2B9D293F5BCF0056AAE3 /* LaunchScreen.storyboard in Resources */,

@@ -25,17 +25,32 @@ class MenuScene: SKScene {
         
         
         //TITLE
-        let label = SKLabelNode(fontNamed: "2Credits")
-        label.text = " The Land Of Fires "
-        label.fontSize = 80
-        label.fontColor = .black
-        label.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + 40)
-        self.addChild(label)
+        let logo = SKSpriteNode(imageNamed: "logo")
+        logo.position = CGPoint(x: self.size.width/2, y: self.size.height/2+55)
+        logo.setScale(1.5)
+        logo.size = CGSize(width: 500, height: 100)
+        logo.name = "logo"
+        
+        let logo1 = SKTexture(imageNamed: "logo1")
+        let logo2 = SKTexture(imageNamed: "logo2")
+        let logo3 = SKTexture(imageNamed: "logo3")
+        let logo4 = SKTexture(imageNamed: "logo4")
+        let logo5 = SKTexture(imageNamed: "logo5")
+        let logo6 = SKTexture(imageNamed: "logo6")
+        
+        
+                logo.run(SKAction.repeatForever(
+                    SKAction.animate(with: [logo1, logo2, logo3, logo4, logo5, logo6],
+                                     timePerFrame: 0.3,
+                                     resize: false,
+                                     restore: true)),
+                         withKey:"iconAnimate")
+        self.addChild(logo)
         
 
         //STARTBUTTON
         let startButton = SKSpriteNode(imageNamed: "buttonStart")
-        startButton.setScale(3.5)
+        startButton.setScale(3.0)
         startButton.position = CGPoint(x: self.size.width/2 , y: 140)
         startButton.name = " startButton "
         self.addChild(startButton)
@@ -43,7 +58,7 @@ class MenuScene: SKScene {
         
         //SCORES BUTTON
         let scoreButton = SKSpriteNode(imageNamed: "buttonScore")
-        scoreButton.setScale(3.5)
+        scoreButton.setScale(3.0)
         scoreButton.position = CGPoint(x: self.size.width/2 , y: 60)
         scoreButton.name = " buttonScore "
         self.addChild(scoreButton)

@@ -166,15 +166,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addComponent()
         self.addAttackButton()
         
-        
-        let frame1 = SKTexture(imageNamed: "fatina1")
-        let frame2 = SKTexture(imageNamed: "fatina2")
-        let frame3 = SKTexture(imageNamed: "fatina3")
-        let frame4 = SKTexture(imageNamed: "fatina4")
+        // FAIRY FLY
+        let FairyFly1 = SKTexture(imageNamed: "fairy1")
+        let FairyFly2 = SKTexture(imageNamed: "fairy2")
+        let FairyFly3 = SKTexture(imageNamed: "fairy3")
+        let FairyFly4 = SKTexture(imageNamed: "fairy4")
         
         
         player.run(SKAction.repeatForever(
-            SKAction.animate(with: [frame1,frame2,frame3,frame4],
+            SKAction.animate(with: [FairyFly1, FairyFly2, FairyFly3, FairyFly4],
                              timePerFrame: 0.3,
                              resize: false,
                              restore: true)),
@@ -272,7 +272,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
  
         
         let component = SKSpriteNode(imageNamed: "battery")
-        component.setScale(0.45)
+        component.setScale(1.0)
         component.physicsBody = SKPhysicsBody(rectangleOf: component.size)
         component.physicsBody?.isDynamic = true
         component.name = "component"
@@ -281,23 +281,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         component.physicsBody?.contactTestBitMask = UInt32(playerCategory)
         component.physicsBody?.collisionBitMask = 1
         component.physicsBody?.usesPreciseCollisionDetection = true
-        
-        
-        let frame1 = SKTexture(imageNamed: "b1")
-        let frame2 = SKTexture(imageNamed: "b2")
-        let frame3 = SKTexture(imageNamed: "b3")
-        let frame4 = SKTexture(imageNamed: "b4")
-        
-        
-        component.run(SKAction.repeatForever(
-            SKAction.animate(with: [frame1,frame2,frame3,frame4],
-                             timePerFrame: 0.3,
-                             resize: false,
-                             restore: true)),
-                 withKey:"iconAnimate")
-        
-        
-        
         
         
         
@@ -326,7 +309,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addAttackButton() {
         attackButton = SKSpriteNode(imageNamed: "pad")
-        attackButton.setScale(2)
+        attackButton.setScale(3)
         attackButton.physicsBody?.isDynamic = false
         attackButton.physicsBody?.affectedByGravity = false
           
@@ -444,7 +427,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func shoot() {
         
-        let projectile = SKSpriteNode(imageNamed: "batteryshoot")
+        let projectile = SKSpriteNode(imageNamed: "fairyShoot")
         projectile.setScale(0.35)
         projectile.zPosition = 1
         projectile.position = CGPoint(x: (player.position.x) + player.size.width, y: (player.position.y)-15)
@@ -461,21 +444,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        let frame1 = SKTexture(imageNamed: "bs1")
-        let frame2 = SKTexture(imageNamed: "bs2")
-        let frame3 = SKTexture(imageNamed: "bs3")
-        let frame4 = SKTexture(imageNamed: "bs4")
+        let frame1 = SKTexture(imageNamed: "shoot1")
+        let frame2 = SKTexture(imageNamed: "shoot2")
+        let frame3 = SKTexture(imageNamed: "shoot3")
+        let frame4 = SKTexture(imageNamed: "shoot4")
+        let frame5 = SKTexture(imageNamed: "shoot5")
         
         
         projectile.run(SKAction.repeatForever(
-            SKAction.animate(with: [frame1,frame2,frame3,frame4],
-                             timePerFrame: 0.3,
+            SKAction.animate(with: [frame1,frame2,frame3,frame4, frame5],
+                             timePerFrame: 0.2,
                              resize: false,
                              restore: true)),
                  withKey:"iconAnimate")
         
         
+        let fairy1 = SKTexture(imageNamed: "shooting1")
+        let fairy2 = SKTexture(imageNamed: "shooting2")
+        let fairy3 = SKTexture(imageNamed: "shooting3")
+        let fairy4 = SKTexture(imageNamed: "shooting4")
         
+        
+        player.run(SKAction.repeatForever(
+            SKAction.animate(with: [fairy1,fairy2,fairy3,fairy4],
+                             timePerFrame: 0.2,
+                             resize: false,
+                             restore: true)),
+                 withKey:"iconAnimate")
         
         
         
@@ -509,7 +504,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        physicsWorld.gravity = .zero
         player = SKSpriteNode(imageNamed: "player")
         
-        player.setScale(0.30)
+        player.setScale(0.25)
 //        player.zRotation = CGFloat(-3/2)
         
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
