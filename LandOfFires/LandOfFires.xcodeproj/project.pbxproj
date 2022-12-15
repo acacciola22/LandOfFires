@@ -30,6 +30,7 @@
 		C9A10BAF294A4D0900085075 /* 2Credits.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BAE294A4D0900085075 /* 2Credits.ttf */; };
 		C9A10BB1294A4D1900085075 /* STV5730A.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BB0294A4D1900085075 /* STV5730A.ttf */; };
 		C9A10BB4294A4E3700085075 /* Videogame1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BB3294A4E3700085075 /* Videogame1.wav */; };
+		C9A10BB8294B2EAB00085075 /* CreditsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A10BB7294B2EAB00085075 /* CreditsScene.swift */; };
 		C9CEEE92294731210063F185 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE91294731210063F185 /* Utilities.swift */; };
 		C9CEEE94294731790063F185 /* PlayerStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE93294731790063F185 /* PlayerStateMachine.swift */; };
 		C9CEEE962947319F0063F185 /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE952947319F0063F185 /* ScoreScene.swift */; };
@@ -62,6 +63,7 @@
 		C9A10BB0294A4D1900085075 /* STV5730A.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = STV5730A.ttf; path = ../../../../../Downloads/STV5730A.ttf; sourceTree = "<group>"; };
 		C9A10BB2294A4D5D00085075 /* LandOfFires-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LandOfFires-iOS-Info.plist"; sourceTree = "<group>"; };
 		C9A10BB3294A4E3700085075 /* Videogame1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Videogame1.wav; path = ../../../../../Downloads/Videogame1.wav; sourceTree = "<group>"; };
+		C9A10BB7294B2EAB00085075 /* CreditsScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScene.swift; sourceTree = "<group>"; };
 		C9CEEE91294731210063F185 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C9CEEE93294731790063F185 /* PlayerStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateMachine.swift; sourceTree = "<group>"; };
 		C9CEEE952947319F0063F185 /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				C9CEEE952947319F0063F185 /* ScoreScene.swift */,
 				C9CEEE93294731790063F185 /* PlayerStateMachine.swift */,
 				2A10027429472A87009546ED /* MenuScene.swift */,
+				C9A10BB7294B2EAB00085075 /* CreditsScene.swift */,
 				C9A10BAA294A4A7000085075 /* HowToPlayScene.swift */,
 				2A10027629472AA0009546ED /* GameOverScene.swift */,
 				2A10027829472B17009546ED /* enemy-types.geojson */,
@@ -222,6 +225,7 @@
 				2A5F2B97293F5BCF0056AAE3 /* GameViewController.swift in Sources */,
 				2A10028129472BBB009546ED /* EnemyNode.swift in Sources */,
 				C9CEEE962947319F0063F185 /* ScoreScene.swift in Sources */,
+				C9A10BB8294B2EAB00085075 /* CreditsScene.swift in Sources */,
 				C9CEEE92294731210063F185 /* Utilities.swift in Sources */,
 				2A5F2B95293F5BCF0056AAE3 /* AppDelegate.swift in Sources */,
 				C9A10BAD294A4ABA00085075 /* ScoreSceneGameOver.swift in Sources */,
