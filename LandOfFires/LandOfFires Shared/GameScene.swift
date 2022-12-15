@@ -67,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     {
         didSet
         {
-            playerShieldsNode.text = "LifeS: \(playerShields)"
+            playerShieldsNode.text = "\(playerShields)"
             
         }
     }
@@ -83,7 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     {
         didSet
         {
-            scoreNode.text = "Current score: \(score)"
+            scoreNode.text = "\(score)"
         }
     }
     
@@ -91,10 +91,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
 
     let positions = Array(stride(from: -320, through: 320, by: 80))
-
-    //SWIPEEEE
-//    let swipeUp = UISwipeGestureRecognizer()
-//    let swipeDown = UISwipeGestureRecognizer()
 
     
     //MARK: DIDMOVE
@@ -115,15 +111,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //punti vite
         imageVite.zPosition = 2
-        imageVite.position.x = 295
-        imageVite.position.y = 305
+        imageVite.position.x = 220
+        imageVite.position.y = 337
         addChild(imageVite)
         
         
         //add score label
         scoreNode.zPosition = 2
-        scoreNode.position.x = 140
-        scoreNode.position.y = 300
+        scoreNode.position.x = 150
+        scoreNode.position.y = 330
         scoreNode.fontSize = 20
         scoreNode.fontColor = .black
         addChild(scoreNode)
@@ -134,8 +130,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //add lifes label
         playerShieldsNode.zPosition = 2
-        playerShieldsNode.position.x = 340
-        playerShieldsNode.position.y = 300
+        playerShieldsNode.position.x = 195
+        playerShieldsNode.position.y = 330
         playerShieldsNode.fontSize = 20
         playerShieldsNode.fontColor = .red
         addChild(playerShieldsNode)
@@ -172,7 +168,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let FairyFly3 = SKTexture(imageNamed: "fairy3")
         let FairyFly4 = SKTexture(imageNamed: "fairy4")
         
-        
+        player.size = CGSize(width: 300, height: 300)
         player.run(SKAction.repeatForever(
             SKAction.animate(with: [FairyFly1, FairyFly2, FairyFly3, FairyFly4],
                              timePerFrame: 0.3,
@@ -427,6 +423,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     func shoot() {
         
+        
+        
         let projectile = SKSpriteNode(imageNamed: "fairyShoot")
         projectile.setScale(0.35)
         projectile.zPosition = 1
@@ -450,7 +448,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let frame4 = SKTexture(imageNamed: "shoot4")
         let frame5 = SKTexture(imageNamed: "shoot5")
         
-        
         projectile.run(SKAction.repeatForever(
             SKAction.animate(with: [frame1,frame2,frame3,frame4, frame5],
                              timePerFrame: 0.2,
@@ -463,19 +460,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let fairy2 = SKTexture(imageNamed: "shooting2")
         let fairy3 = SKTexture(imageNamed: "shooting3")
         let fairy4 = SKTexture(imageNamed: "shooting4")
+        let frames = [fairy1, fairy2, fairy3, fairy4]
         
-        
-        player.run(SKAction.repeatForever(
+        player.size = CGSize(width: 300, height: 300)
+        player.run(SKAction.animate(with: frames, timePerFrame: 0.1))
+        //player.size =
+       
+        /*
+        player.run(
             SKAction.animate(with: [fairy1,fairy2,fairy3,fairy4],
                              timePerFrame: 0.2,
                              resize: false,
-                             restore: true)),
+                             restore: true),
                  withKey:"iconAnimate")
-        
+        */
         
         
         self.addChild(projectile)
-        let action = SKAction.moveTo(x: self.frame.width + projectile.size.width, duration: 0.5)
+        let action = SKAction.moveTo(x: self.frame.width + projectile.size.width, duration: 0.7)
 
         projectile.run(action, completion: {
             projectile.removeAllActions()
