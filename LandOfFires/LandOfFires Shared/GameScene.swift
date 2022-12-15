@@ -29,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let deathEnemy = SKAction.playSoundFileNamed("ruota", waitForCompletion: false)
     let gameOverSound = SKAction.playSoundFileNamed("morte", waitForCompletion: false)
     let startClickSound = SKAction.playSoundFileNamed("startclick", waitForCompletion: false)
-    
+    let videogiocoSound = SKAction.playSoundFileNamed("Videogame1", waitForCompletion: false)
     
     var pausedGame = false
     
@@ -95,6 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
+    
     var score: Int = -0
     {
         didSet
@@ -133,8 +134,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //punti vite
         imageVite.zPosition = 2
-        imageVite.position.x = 220
-        imageVite.position.y = 337
+        imageVite.setScale(1.5)
+        imageVite.position.x = 225
+        imageVite.position.y = 340
         addChild(imageVite)
         
         
@@ -273,11 +275,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if currentWave.enemies.isEmpty {
             for (index, position) in positions.shuffled().enumerated(){
-                let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffesetX * CGFloat(index * 5), moveStraight: true)
+                let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffesetX * CGFloat(index * 5), moveStraight: false)
+            enemy.setScale(2.5)
+                
                 addChild(enemy)
             }} else {
                 for enemy in currentWave.enemies {
                     let node = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: positions[enemy.position]), xOffset: enemyOffesetX * enemy.xOffset, moveStraight: enemy.moveStraight)
+                    node.setScale(2.5)
                     addChild(node)
                 }
             }
@@ -289,8 +294,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addComponent() {
  
         
-        let component = SKSpriteNode(imageNamed: "battery")
-        component.setScale(1.0)
+        let component = SKSpriteNode(imageNamed: "power")
+        component.setScale(3.0)
         component.physicsBody = SKPhysicsBody(rectangleOf: component.size)
         component.physicsBody?.isDynamic = true
         component.name = "component"
@@ -397,7 +402,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if contact.bodyB.node?.name == "component"{
                 score += 10
-                playerShields += 1
+                playerShields += 2
                 contact.bodyB.node?.removeFromParent()
             }
             

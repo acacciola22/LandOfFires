@@ -1,4 +1,5 @@
 
+
 //
 //  CreditsScene.swift
 //  Merdina
@@ -10,7 +11,7 @@ import Foundation
 import SpriteKit
 
 class CreditsScene: SKScene {
-    let buttonSound = SKAction.playSoundFileNamed("bottone", waitForCompletion: false)
+    
     override init(size: CGSize) {
         
         super.init(size: size)
@@ -27,7 +28,7 @@ class CreditsScene: SKScene {
         
         //TITLE
         let label = SKLabelNode(fontNamed: "2Credits")
-        label.text = " CIAO SIAMO LE WINX AAEGR "
+        label.text = " CIAO "
         label.fontSize = 60
         label.fontColor = .black
         label.position = CGPoint(x: self.size.width/2 , y: self.size.height/2)
@@ -51,7 +52,6 @@ class CreditsScene: SKScene {
             let node = self.nodes(at: location).first
             
             if (node?.name == " backButton ") {
-                run(buttonSound)
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
                 let scene = MenuScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill

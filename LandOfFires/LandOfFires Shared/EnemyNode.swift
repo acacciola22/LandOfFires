@@ -53,6 +53,7 @@ class EnemyNode: SKSpriteNode {
 
         let weapon = SKSpriteNode(imageNamed: weaponType)
         weapon.name = "enemyWeapon"
+        weapon.setScale(0.3)
         weapon.position = position
         weapon.zRotation = zRotation
         parent?.addChild(weapon)
