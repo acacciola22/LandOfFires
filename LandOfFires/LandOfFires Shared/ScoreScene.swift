@@ -9,20 +9,32 @@ import Foundation
 import SpriteKit
 
 class ScoreScene : SKScene {
-    
+    let buttonSound = SKAction.playSoundFileNamed("bottone", waitForCompletion: false)
     var score : Int = 0
     
     override func didMove(to view: SKView) -> Void {
+        
+        
+        // BACKBUTTON
+        let backButton = SKSpriteNode(imageNamed: "buttonBack")
+        backButton.setScale(2.5)
+        backButton.position = CGPoint(x: self.size.width - 50, y: 330)
+        backButton.name = " backButton "
+        self.addChild(backButton)
+        
         
         let scores = loadScores()
         var height = frame.height - 55
         let width = frame.width/2
         
-        let titleNode : SKLabelNode = SKLabelNode(fontNamed: "Copperplate-Bold")
+
+        
+        let titleNode : SKLabelNode = SKLabelNode(fontNamed: "STV5730A")
         titleNode.text = "HIGH SCORES"
-        titleNode.fontColor = .purple
+        titleNode.fontSize = 30
+        titleNode.fontColor = .gray
         titleNode.position.y = height
-        height -= 30
+        height -= 40
         titleNode.position.x = width
         addChild(titleNode)
         
@@ -30,44 +42,38 @@ class ScoreScene : SKScene {
         for index in scores.indices
         {
             let rank = "\(index + 1): \(scores[index])"
-            let scoreNode : SKLabelNode = SKLabelNode(fontNamed: "Copperplate-Light")
+            let scoreNode : SKLabelNode = SKLabelNode(fontNamed: "STV5730A")
             scoreNode.text = rank
             scoreNode.position.y = height
             scoreNode.position.x = width
             if index % 2 == 0
             {
-                scoreNode.fontColor = .magenta
+                scoreNode.fontColor = .white
             }
             else
             {
-                scoreNode.fontColor = .green
+                scoreNode.fontColor = .black
             }
             
             height -= 30
             addChild(scoreNode)
         }
         
-    let personalScoreNode = SKLabelNode(fontNamed: "Copperplate-Light")
-        personalScoreNode.text = "your score: \(score)"
-        personalScoreNode.position.y = height
-        personalScoreNode.position.x = width + 10
-        personalScoreNode.fontColor = .yellow
-        addChild(personalScoreNode)
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (touches.first != nil)
-        {
-            goToEndGame()
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self)
+            let node = self.nodes(at: location).first
+            
+            if (node?.name == " backButton ") {
+                run(buttonSound)
+                let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = MenuScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition:  reveal)
+            }
         }
-    }
-    
-    private func goToEndGame() -> Void{
-        let transition = SKTransition.doorway(withDuration: 2)
-        let restartScene = GameOverScene(size: size)
-//        restartScene.gameScore = score
-//        restartScene.size = CGSize(width: 300, height: 400)
-        restartScene.scaleMode = .fill
-        self.view?.presentScene(restartScene, transition: transition)
     }
 }

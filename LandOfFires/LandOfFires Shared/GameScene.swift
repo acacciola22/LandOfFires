@@ -19,15 +19,26 @@ enum CollisionType: UInt32 {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-//    var gameViewControllerBridge: GameViewController!
-//    let motionManager = CMMotionManager()
-
+    //    var gameViewControllerBridge: GameViewController!
+    //    let motionManager = CMMotionManager()
+    
+    //MARK: - SOUNDS
+    
+    let buttonSound = SKAction.playSoundFileNamed("bottone", waitForCompletion: false)
+    let hitSound = SKAction.playSoundFileNamed("sparo", waitForCompletion: false)
+    let deathEnemy = SKAction.playSoundFileNamed("ruota", waitForCompletion: false)
+    let gameOverSound = SKAction.playSoundFileNamed("morte", waitForCompletion: false)
+    let startClickSound = SKAction.playSoundFileNamed("startclick", waitForCompletion: false)
+    
+    
+    var pausedGame = false
+    
     var cam = SKCameraNode()
- 
+    
     var attackButton = SKNode()
-
+    
     let playerSpeed = 7.0
-
+    
     
     //SPRITE ENGINE
     var previousTimeInterval : TimeInterval = 0
@@ -37,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerStateMachine : GKStateMachine!
     
     
-    var player = SKSpriteNode()
+    var player = SKSpriteNode(imageNamed: "fairy")
     var playerMoveUp = SKAction()
     var playerMoveDown = SKAction()
     
@@ -56,10 +67,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let waves = Bundle.main.decode([Wave].self, from: "waves.geojson")
     let enemyTypes = Bundle.main.decode([EnemyType].self, from: "enemy-types.geojson")
-
+    
     var isPlayerAlive = true
     var levelNumber = 0
     var waveNumber = 0
+    
+    //    //BUTTON PAUSE
+    //    var pauseBtn:SKSpriteNode = SKSpriteNode(imageNamed: "PLAY-PAUSE")
+    
+    
     
     let sound = SKAction.playSoundFileNamed("Videogame1", waitForCompletion: false)
     
@@ -89,23 +105,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let scoreNode : SKLabelNode = SKLabelNode(fontNamed: "STV5730A")
     
-
+    
     let positions = Array(stride(from: -320, through: 320, by: 80))
-
     
     //MARK: DIDMOVE
     
     
     override func didMove(to view: SKView) {
-//        physicsWorld.gravity = .zero
-        physicsWorld.contactDelegate = self
-
         
+        physicsWorld.contactDelegate = self
+        
+        //MAIN SOUND
         scene!.run(SKAction.sequence([.wait(forDuration: 0.02) ,  .run {
             let backgroundSound = SKAudioNode(fileNamed: "Videogame1")
             self.addChild(backgroundSound)
         } ]))
         
+        // Pausebutton
+        let pauseButton = SKSpriteNode(imageNamed: "pause")
+        pauseButton.zPosition = 2
+        pauseButton.setScale(2.5)
+        pauseButton.position = CGPoint(x: self.size.width - 50, y: 330)
+        pauseButton.name = " pauseButton "
+        self.addChild(pauseButton)
         
         
         
@@ -136,7 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerShieldsNode.fontColor = .red
         addChild(playerShieldsNode)
         playerShields = 20
-
+        
         enumerateChildNodes(withName: "c3", using: { [self]node, stop in
             
             //        COMPONENT PHYSICS
@@ -155,8 +177,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             particles.zPosition = -1
             addChild(particles)
         }
-
-
+        
+        
         self.addBackground()
         self.addPlayer()
         self.addComponent()
@@ -174,7 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                              timePerFrame: 0.3,
                              resize: false,
                              restore: true)),
-                 withKey:"iconAnimate")
+                   withKey:"iconAnimate")
         
         
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -184,21 +206,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let backgroundSound = SKAudioNode(fileNamed: "NectarPiano-Song")
             self.addChild(backgroundSound)
         } ]))
-
-
+        
+        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
-
+        
     }
-
-
+    
+    
     override func update(_ currentTime: TimeInterval) {
-
-
+        
+        
         self.moveBackground()
         self.moveComponents()
-
-
+        
+        
         for child in children {
             if child.frame.maxX < 0 {
                 if !frame.intersects(child.frame) {
@@ -206,27 +228,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-
+        
         let activeEnemies = children.compactMap { $0 as? EnemyNode }
-
+        
         if activeEnemies.isEmpty {
             createWave()
             addComponent()
         }
-
+        
         for enemy in activeEnemies {
             guard frame.intersects(enemy.frame) else { continue }
-
+            
             if enemy.lastFireTime + 1 < currentTime {
                 enemy.lastFireTime = currentTime
-
+                
                 if Int.random(in: 0...6) == 0 {
                     enemy.fire()
                 }
             }
         }
     }
-
+    
 
 
 
@@ -310,7 +332,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         attackButton.physicsBody?.affectedByGravity = false
           
         attackButton.name = "attackButton"
-        attackButton.position = CGPoint(x: 780, y: 50)
+        attackButton.position = CGPoint(x: 750, y: 60)
         
     
         self.addChild(attackButton)
@@ -332,7 +354,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 addChild(explosion)
                
             }
-
+            run (deathEnemy)
             playerShields -= 1
 
             if playerShields == 0 {
@@ -343,6 +365,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstNode.removeFromParent()
             
         } else if let enemy = firstNode as? EnemyNode {
+            
             enemy.shields -= 1
 
             if enemy.shields == 0 {
@@ -362,6 +385,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {//qua forse
                 explosion.position = secondNode.position
+                run (deathEnemy)
                 addChild(explosion)
                 score += 6
             }
@@ -388,39 +412,81 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //MARK: commentato per usare swipe
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-       guard isPlayerAlive else { return }
-
-
+        guard isPlayerAlive else { return }
+        
+        
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
             let node = self.atPoint(location)
             
-            if (node.name == "attackButton") {
+            
+            
+            if(node.name == " pauseButton "){
+                if isPaused {return}
+                run(buttonSound)
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                impactMed.impactOccurred()
+                isPaused = true
+                print("paused")
+                node.removeFromParent()
+                
+                // Resumebutton
+                let resumeButton = SKSpriteNode(imageNamed: "resume")
+                resumeButton.zPosition = 2
+                resumeButton.setScale(2.5)
+                resumeButton.position = CGPoint(x: self.size.width - 50, y: 330)
+                resumeButton.name = " resumeButton "
+                self.addChild(resumeButton)
+            }else if (node.name == " resumeButton "){
+                run(buttonSound)
+                if !isPaused {return}
+                let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                impactMed.impactOccurred()
+                isPaused = false
+                node.removeFromParent()
+                
+                // Pausebutton
+                let pauseButton = SKSpriteNode(imageNamed: "pause")
+                pauseButton.zPosition = 2
+                pauseButton.setScale(2.5)
+                pauseButton.position = CGPoint(x: self.size.width - 50, y: 330)
+                pauseButton.name = " pauseButton "
+                self.addChild(pauseButton)
+            }
+            else if (node.name == "attackButton") {
+                
+                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
                     impactMed.impactOccurred() //MARK CONTROLLARE SE FUNZIONA
-                shoot()
-            } else {
-                if location.y > player.position.y {
-                    if player.position.y < 500 {
-                        player.run(playerMoveUp)
-                       
-
-                    }
-                } else {
-                    if player.position.y > 50 {
-                        player.run(playerMoveDown)
-                        
-
+                    shoot()
+                }else {
+                    if (node.name == "resumeButton") {
+                        run(buttonSound)
+                        let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                        impactMed.impactOccurred() //MARK CONTROLLARE SE FUNZIONA
+                        isPaused = false
+                        node.removeFromParent()
+                    } else {
+                        if location.y > player.position.y {
+                            if player.position.y < 500 {
+                                player.run(playerMoveUp)
+                                
+                                
+                            }
+                        } else {
+                            if player.position.y > 50 {
+                                player.run(playerMoveDown)
+                                
+                                
+                            }
+                        }
                     }
                 }
-            }
-              
+                
+            
+            
         }
-
     }
     
-
-
     func shoot() {
         
         
@@ -479,6 +545,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(projectile)
         let action = SKAction.moveTo(x: self.frame.width + projectile.size.width, duration: 0.7)
 
+        run (hitSound)
+
+
         projectile.run(action, completion: {
             projectile.removeAllActions()
             projectile.removeFromParent()
@@ -490,6 +559,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         if let explosion = SKEmitterNode(fileNamed: "Explosion") {
             explosion.position = player.position
+            run (gameOverSound)
             addChild(explosion)
         }
 
@@ -556,6 +626,79 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         })
     }
+    
+
+    
+    func pause(isPaused: Bool) {
+        self.physicsWorld.speed = 0
+//        self.view?.isPaused = isPaused
+    }
+    
+//    // MARK: - pauseGame
+//    func pauseGame() {
+//        self.isPaused = true
+//        currentGameState = gameState.pauseGame
+//        self.physicsWorld.speed = 0
+//        self.speed = 0.0
+//        if (backgroundMusicIsOn == true) {
+//            backingAudio.stop()
+//        }
+//        if resumeButton.isHidden == true {
+//            resumeButton.isHidden = false
+//        }
+//        if pauseButton.isHidden == false {
+//            pauseButton.isHidden = true
+//        }
+//    }
+//
+//
+//
+//    // MARK: - resumeGame
+//    func resumeGame() {
+//        self.isPaused = false
+//        currentGameState = gameState.inGame
+//        self.physicsWorld.speed = 1
+//        self.speed = 1.0
+//        if (backgroundMusicIsOn == true) {
+//            backingAudio.play()
+//        }
+//        if resumeButton.isHidden == false {
+//            resumeButton.isHidden = true
+//        }
+//        if pauseButton.isHidden == true {
+//            pauseButton.isHidden = false
+//        }
+//    }
+//
+//
+//
+//
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        for touch: AnyObject in touches {
+//
+//            let pointOfTouch = touch.location(in: self)
+//
+//            let nodeUserTapped = atPoint(pointOfTouch)
+//
+//            if nodeUserTapped.name == "PauseButton" {
+//                if (self.isPaused == false) {
+//                    pauseGame()
+//                }
+//            }
+//
+//            if nodeUserTapped.name == "ResumeButton" {
+//                if (self.isPaused == true) {
+//                    resumeGame()
+//                }
+//
+//            }
+//        }
+//    }
+    
+    
+    
+    
+    
 }
 
 

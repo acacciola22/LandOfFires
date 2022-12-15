@@ -1,15 +1,17 @@
 //
-//  MenuScene.swift
+//  CreditsScene.swift
 //  LandOfFires iOS
 //
-//  Created by antonia on 12/12/22.
+//  Created by Rita Marrano on 15/12/22.
 //
+
 
 import Foundation
 import SpriteKit
 
 class MenuScene: SKScene {
     
+    let buttonSound = SKAction.playSoundFileNamed("bottone", waitForCompletion: false)
     override init(size: CGSize) {
         
         super.init(size: size)
@@ -23,7 +25,7 @@ class MenuScene: SKScene {
             self.addChild(bg)
         }
         
-        
+
         //TITLE
         let logo = SKSpriteNode(imageNamed: "logo")
         logo.position = CGPoint(x: self.size.width/2, y: self.size.height/2+55)
@@ -73,7 +75,11 @@ class MenuScene: SKScene {
         
         
         //CREDITS BUTTON
-        
+        let creditsButton = SKSpriteNode(imageNamed: "credits")
+        creditsButton.setScale(3.5)
+        creditsButton.position = CGPoint(x: self.size.width - 50, y: 50)
+        creditsButton.name = " buttonCredits "
+        self.addChild(creditsButton)
         
     }
     
@@ -83,18 +89,27 @@ class MenuScene: SKScene {
             let node = self.nodes(at: location).first
             
             if (node?.name == " startButton ") {
+                run(buttonSound)
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
                 let scene = GameScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill
                 self.view?.presentScene(scene, transition:  reveal)
             }else if (node?.name == " buttonScore "){
+                run(buttonSound)
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
                 let scene = ScoreScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill
                 self.view?.presentScene(scene, transition:  reveal)
             }else if (node?.name == " buttonHow ") {
+                run(buttonSound)
                 let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
                 let scene = HowToPlayScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition:  reveal)
+            }else if (node?.name == " buttonCredits ") {
+                run(buttonSound)
+                let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = CreditsScene(size: self.view!.bounds.size)
                 scene.scaleMode = .aspectFill
                 self.view?.presentScene(scene, transition:  reveal)
             }

@@ -1,21 +1,21 @@
 [
     {
         "name": "enemy1",
-        "shields": 1,
+        "shields": 3,
         "speed": 600,
         "powerUpChance": 10,
     },
     {
         "name": "enemy2",
-        "shields": 3,
+        "shields": 5,
         "speed": 400,
         "powerUpChance": 5,
     },
     {
         "name": "enemy3",
-        "shields": 5,
-        "speed": 200,
-        "powerUpChance": 2,
+        "shields": 8,
+        "speed": 800,
+        "powerUpChance": 3,
     }
 ]
 
