@@ -19,8 +19,6 @@ enum CollisionType: UInt32 {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    //    var gameViewControllerBridge: GameViewController!
-    //    let motionManager = CMMotionManager()
     
     //MARK: - SOUNDS
     
@@ -72,14 +70,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var levelNumber = 0
     var waveNumber = 0
     
-    //    //BUTTON PAUSE
-    //    var pauseBtn:SKSpriteNode = SKSpriteNode(imageNamed: "PLAY-PAUSE")
-    
-    
-    
     let sound = SKAction.playSoundFileNamed("Videogame1", waitForCompletion: false)
     
-    var playerShields = 20 //VITE
+    var playerShields = 5 //VITE
     {
         didSet
         {
@@ -116,11 +109,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.contactDelegate = self
         
+        
+        
+        
         //MAIN SOUND
         scene!.run(SKAction.sequence([.wait(forDuration: 0.02) ,  .run {
             let backgroundSound = SKAudioNode(fileNamed: "Videogame1")
             self.addChild(backgroundSound)
         } ]))
+        
+        
+        // BACKBUTTON
+        let backButton = SKSpriteNode(imageNamed: "buttonBack")
+        backButton.zPosition = 2
+        backButton.setScale(2.5)
+        backButton.position = CGPoint(x: self.size.width - 800, y: 330)
+        backButton.name = " backButton "
+        self.addChild(backButton)
         
         // Pausebutton
         let pauseButton = SKSpriteNode(imageNamed: "pause")
@@ -132,12 +137,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
+        
         //punti vite
         imageVite.zPosition = 2
         imageVite.setScale(1.5)
         imageVite.position.x = 225
         imageVite.position.y = 340
         addChild(imageVite)
+        
+        
         
         
         //add score label
@@ -159,7 +167,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerShieldsNode.fontSize = 20
         playerShieldsNode.fontColor = .red
         addChild(playerShieldsNode)
-        playerShields = 20
+        playerShields = 5
+        
+        
+        
         
         enumerateChildNodes(withName: "c3", using: { [self]node, stop in
             
@@ -270,19 +281,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let maximumEnemyType = min(enemyTypes.count, levelNumber + 1)
         let enemyType = Int.random(in: 0..<maximumEnemyType)
 
-        let enemyOffesetX: CGFloat = 100
+        let enemyOffesetX: CGFloat = 80
         let enemyStartX = 800
 
         if currentWave.enemies.isEmpty {
             for (index, position) in positions.shuffled().enumerated(){
-                let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffesetX * CGFloat(index * 5), moveStraight: false)
-            enemy.setScale(2.5)
-                
+                let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffesetX * CGFloat(index * 5), moveStraight: true)
+            enemy.setScale(2)
+                enemy.zRotation = CGFloat(1.6)
                 addChild(enemy)
             }} else {
                 for enemy in currentWave.enemies {
                     let node = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: positions[enemy.position]), xOffset: enemyOffesetX * enemy.xOffset, moveStraight: enemy.moveStraight)
                     node.setScale(2.5)
+                    node.zRotation = CGFloat(1.6)
                     addChild(node)
                 }
             }
@@ -293,9 +305,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addComponent() {
  
-        
+        let path = UIBezierPath()
+        path.move(to: .zero)
+
         let component = SKSpriteNode(imageNamed: "power")
-        component.setScale(3.0)
+        component.setScale(2.5)
         component.physicsBody = SKPhysicsBody(rectangleOf: component.size)
         component.physicsBody?.isDynamic = true
         component.name = "component"
@@ -307,24 +321,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        let random: CGFloat = CGFloat(arc4random_uniform(100))
+        let random: CGFloat = CGFloat(arc4random_uniform(300))
         component.position = CGPoint(x: self.frame.size.width + random, y: random)
+        
+        path.addCurve(to: CGPoint(x: -3500, y: 0), controlPoint1: CGPoint(x: 0, y: -position.y * 4), controlPoint2: CGPoint(x: -1000, y: -position.y))
+        
         self.addChild(component)
     }
+    
     
     func moveComponents() {
         self.enumerateChildNodes(withName: "component", using: { (node, stop) -> Void in
             if let component = node as? SKSpriteNode {
                 component.position = CGPoint(x: component.position.x - self.enemyVelocity, y: component.position.y)
                 
+                
                 if component.position.x < 0  {
                     component.removeFromParent()
                 }
             }
-
-            
-        })
-    }
+    })
+}
     
 
     
@@ -332,17 +349,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addAttackButton() {
         attackButton = SKSpriteNode(imageNamed: "pad")
-        attackButton.setScale(3)
+        attackButton.setScale(3.5)
+       
         attackButton.physicsBody?.isDynamic = false
         attackButton.physicsBody?.affectedByGravity = false
           
         attackButton.name = "attackButton"
-        attackButton.position = CGPoint(x: 750, y: 60)
-        
-    
+        attackButton.position = CGPoint(x: 740, y: 70)
+//        attackButton.physicsBody?.area()
+//        attackButton.size = CGSize(width: 100, height: 100)
         self.addChild(attackButton)
-    }
+}
 
+    
+    
+    
+    
+    
     func didBegin(_ contact: SKPhysicsContact) {
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
@@ -351,7 +374,64 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let firstNode = sortedNodes[0]
         let secondNode = sortedNodes[1]
 
-        if secondNode.name == "player" {
+//        if secondNode.name == "player" {
+//            guard isPlayerAlive else { return }
+//
+//            if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+//                explosion.position = firstNode.position
+//                addChild(explosion)
+//               
+//            }
+//            run (deathEnemy)
+//            playerShields -= 1
+//
+//            if playerShields == 0 {
+//                gameOver()
+////                updateHighScore(with: score)
+//            }
+//
+//            firstNode.removeFromParent()
+//            
+//        } else if let enemy = firstNode as? EnemyNode {
+//            
+//            enemy.shields -= 1
+//
+//            if enemy.shields == 0 {
+//                if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+//                    explosion.position = enemy.position
+//                    addChild(explosion)
+//                }
+//                enemy.removeFromParent()
+//            }
+//
+//            if let explosion = SKEmitterNode(fileNamed: "Explosion") {
+//                explosion.position = enemy.position
+//                addChild(explosion)
+//            }
+//            
+//            secondNode.removeFromParent()
+//        } else {
+//            if let explosion = SKEmitterNode(fileNamed: "Explosion") {//qua forse
+//                explosion.position = secondNode.position
+//                run (deathEnemy)
+//                addChild(explosion)
+//                score += 6
+//            }
+//            firstNode.removeFromParent()
+//            secondNode.removeFromParent()
+//        }
+        
+        if (nodeA.name == "component" && nodeB == player) || (nodeA == player && nodeB.name == "component") {
+            
+            if contact.bodyB.node?.name == "component"{
+                score += 10
+                playerShields += 1
+                contact.bodyB.node?.removeFromParent()
+            }
+            
+        } else if (secondNode.name == "player"){
+            
+  
             guard isPlayerAlive else { return }
 
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {
@@ -364,13 +444,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
             if playerShields == 0 {
                 gameOver()
-                updateHighScore(with: score)
+//                updateHighScore(with: score)
             }
 
             firstNode.removeFromParent()
+
             
         } else if let enemy = firstNode as? EnemyNode {
-            
+
             enemy.shields -= 1
 
             if enemy.shields == 0 {
@@ -387,6 +468,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             secondNode.removeFromParent()
+            
         } else {
             if let explosion = SKEmitterNode(fileNamed: "Explosion") {//qua forse
                 explosion.position = secondNode.position
@@ -398,15 +480,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             secondNode.removeFromParent()
         }
         
-        if (nodeA.name == "component" && nodeB == player) || (nodeA == player && nodeB.name == "component") {
-            
-            if contact.bodyB.node?.name == "component"{
-                score += 10
-                playerShields += 2
-                contact.bodyB.node?.removeFromParent()
-            }
-            
-        }
+        
+        
+        
+        
+        
         
 }
 
@@ -414,14 +492,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     
-    
-    //MARK: commentato per usare swipe
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard isPlayerAlive else { return }
         
         
         for touch: AnyObject in touches {
             let location = touch.location(in: self)
+            
             let node = self.atPoint(location)
             
             
@@ -435,6 +512,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 print("paused")
                 node.removeFromParent()
                 
+                
+                
+                
                 // Resumebutton
                 let resumeButton = SKSpriteNode(imageNamed: "resume")
                 resumeButton.zPosition = 2
@@ -442,28 +522,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 resumeButton.position = CGPoint(x: self.size.width - 50, y: 330)
                 resumeButton.name = " resumeButton "
                 self.addChild(resumeButton)
+                
+                
             }else if (node.name == " resumeButton "){
                 run(buttonSound)
                 if !isPaused {return}
                 let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                impactMed.impactOccurred()
+                impactMed.impactOccurred(intensity: 0.8)
                 isPaused = false
                 node.removeFromParent()
                 
                 // Pausebutton
                 let pauseButton = SKSpriteNode(imageNamed: "pause")
                 pauseButton.zPosition = 2
-                pauseButton.setScale(2.5)
-                pauseButton.position = CGPoint(x: self.size.width - 50, y: 330)
+                pauseButton.setScale(2.9)
+                pauseButton.position = CGPoint(x: self.size.width - 55, y: 330)
                 pauseButton.name = " pauseButton "
                 self.addChild(pauseButton)
+                
+                
             }
             else if (node.name == "attackButton") {
                 
-                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
-                    impactMed.impactOccurred() //MARK CONTROLLARE SE FUNZIONA
+                let impactMed = UIImpactFeedbackGenerator(style: .heavy)
+                    impactMed.impactOccurred(intensity: 0.8) //MARK CONTROLLARE SE FUNZIONA
+                
                     shoot()
-                }else {
+                }
+            else if (node.name == " backButton ") {
+                    
+                    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+                        impactMed.impactOccurred() //MARK CONTROLLARE SE FUNZIONA
+                    
+                let reveal : SKTransition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let scene = MenuScene(size: self.view!.bounds.size)
+                scene.scaleMode = .aspectFill
+                self.view?.presentScene(scene, transition:  reveal)
+                    }else {
                     if (node.name == "resumeButton") {
                         run(buttonSound)
                         let impactMed = UIImpactFeedbackGenerator(style: .medium)
@@ -486,9 +581,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }
                     }
                 }
-                
-            
-            
         }
     }
     
@@ -497,10 +589,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         let projectile = SKSpriteNode(imageNamed: "fairyShoot")
-        projectile.setScale(0.35)
+        projectile.setScale(0.30)
         projectile.zPosition = 1
-        projectile.position = CGPoint(x: (player.position.x) + player.size.width, y: (player.position.y)-15)
-        
+        projectile.position = CGPoint(x: (player.position.x + 50) , y: (player.position.y)-15)
+//        + player.size.width
         
 
         projectile.physicsBody = SKPhysicsBody(circleOfRadius: projectile.size.width/2)
@@ -509,9 +601,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.contactTestBitMask = UInt32(enemyCategory)
         projectile.physicsBody?.collisionBitMask = 1
         projectile.physicsBody?.usesPreciseCollisionDetection = true
-        
-        
-        
+
         
         let frame1 = SKTexture(imageNamed: "shoot1")
         let frame2 = SKTexture(imageNamed: "shoot2")
@@ -533,21 +623,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let fairy4 = SKTexture(imageNamed: "shooting4")
         let frames = [fairy1, fairy2, fairy3, fairy4]
         
-        player.size = CGSize(width: 300, height: 300)
+        player.size = CGSize(width: 270, height: 270)
         player.run(SKAction.animate(with: frames, timePerFrame: 0.1))
-        //player.size =
-       
-        /*
-        player.run(
-            SKAction.animate(with: [fairy1,fairy2,fairy3,fairy4],
-                             timePerFrame: 0.2,
-                             resize: false,
-                             restore: true),
-                 withKey:"iconAnimate")
-        */
         
         
         self.addChild(projectile)
+        
         let action = SKAction.moveTo(x: self.frame.width + projectile.size.width, duration: 0.7)
 
         run (hitSound)
@@ -578,13 +659,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     func addPlayer () {
-//        physicsWorld.gravity = .zero
         player = SKSpriteNode(imageNamed: "player")
+        player.setScale(0.15)
         
-        player.setScale(0.25)
-//        player.zRotation = CGFloat(-3/2)
-        
-        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.size )
         player.physicsBody?.isDynamic = false
         player.physicsBody?.affectedByGravity = false
         
@@ -598,14 +676,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.position = CGPoint(x: 120, y: 160)
         
         
-        playerMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.2)
-        playerMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.2)
+        playerMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.1)
+        playerMoveDown = SKAction.moveBy(x: 0, y: -30, duration: 0.1)
         self.addChild(player)
         
-    }
+}
     
-    
-    
+
     func addBackground(){
 
         
@@ -618,7 +695,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             self.addChild(bg)
         }
-    }
+}
+    
     
     func moveBackground() {
         self.enumerateChildNodes(withName: "background", using: {(node, stop) -> Void in
@@ -631,78 +709,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         })
     }
-    
-
-    
-    func pause(isPaused: Bool) {
-        self.physicsWorld.speed = 0
-//        self.view?.isPaused = isPaused
-    }
-    
-//    // MARK: - pauseGame
-//    func pauseGame() {
-//        self.isPaused = true
-//        currentGameState = gameState.pauseGame
-//        self.physicsWorld.speed = 0
-//        self.speed = 0.0
-//        if (backgroundMusicIsOn == true) {
-//            backingAudio.stop()
-//        }
-//        if resumeButton.isHidden == true {
-//            resumeButton.isHidden = false
-//        }
-//        if pauseButton.isHidden == false {
-//            pauseButton.isHidden = true
-//        }
-//    }
-//
-//
-//
-//    // MARK: - resumeGame
-//    func resumeGame() {
-//        self.isPaused = false
-//        currentGameState = gameState.inGame
-//        self.physicsWorld.speed = 1
-//        self.speed = 1.0
-//        if (backgroundMusicIsOn == true) {
-//            backingAudio.play()
-//        }
-//        if resumeButton.isHidden == false {
-//            resumeButton.isHidden = true
-//        }
-//        if pauseButton.isHidden == true {
-//            pauseButton.isHidden = false
-//        }
-//    }
-//
-//
-//
-//
-//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch: AnyObject in touches {
-//
-//            let pointOfTouch = touch.location(in: self)
-//
-//            let nodeUserTapped = atPoint(pointOfTouch)
-//
-//            if nodeUserTapped.name == "PauseButton" {
-//                if (self.isPaused == false) {
-//                    pauseGame()
-//                }
-//            }
-//
-//            if nodeUserTapped.name == "ResumeButton" {
-//                if (self.isPaused == true) {
-//                    resumeGame()
-//                }
-//
-//            }
-//        }
-//    }
-    
-    
-    
-    
     
 }
 

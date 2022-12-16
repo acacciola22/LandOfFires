@@ -37,6 +37,7 @@
 		C9A10BD6294B50DC00085075 /* STV5730A.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BD5294B50DC00085075 /* STV5730A.ttf */; };
 		C9A10BD9294B510300085075 /* 2Credits.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BD8294B510300085075 /* 2Credits.ttf */; };
 		C9A10BDB294B540500085075 /* Videogame1.wav in Resources */ = {isa = PBXBuildFile; fileRef = C9A10BDA294B540500085075 /* Videogame1.wav */; };
+		C9A10BDF294BC63D00085075 /* PauseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A10BDE294BC63D00085075 /* PauseScene.swift */; };
 		C9CEEE92294731210063F185 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE91294731210063F185 /* Utilities.swift */; };
 		C9CEEE94294731790063F185 /* PlayerStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE93294731790063F185 /* PlayerStateMachine.swift */; };
 		C9CEEE962947319F0063F185 /* ScoreScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9CEEE952947319F0063F185 /* ScoreScene.swift */; };
@@ -77,6 +78,7 @@
 		C9A10BD7294B50EA00085075 /* STV5730A.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = STV5730A.ttf; path = "../../../../../Downloads/LOF SFX/STV5730A.ttf"; sourceTree = "<group>"; };
 		C9A10BD8294B510300085075 /* 2Credits.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 2Credits.ttf; path = ../../../../../Downloads/2Credits.ttf; sourceTree = "<group>"; };
 		C9A10BDA294B540500085075 /* Videogame1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Videogame1.wav; sourceTree = "<group>"; };
+		C9A10BDE294BC63D00085075 /* PauseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScene.swift; sourceTree = "<group>"; };
 		C9CEEE91294731210063F185 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C9CEEE93294731790063F185 /* PlayerStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateMachine.swift; sourceTree = "<group>"; };
 		C9CEEE952947319F0063F185 /* ScoreScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreScene.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				2A5F2B8A293F5BCD0056AAE3 /* GameScene.sks */,
 				C9CEEE97294733320063F185 /* MyParticle.sks */,
 				2A5F2B8B293F5BCD0056AAE3 /* GameScene.swift */,
+				C9A10BDE294BC63D00085075 /* PauseScene.swift */,
 				C9A10BAC294A4ABA00085075 /* ScoreSceneGameOver.swift */,
 				2A5F2B94293F5BCF0056AAE3 /* AppDelegate.swift */,
 				2A5F2B96293F5BCF0056AAE3 /* GameViewController.swift */,
@@ -256,6 +259,7 @@
 				2A10027529472A87009546ED /* MenuScene.swift in Sources */,
 				2A10027D29472B92009546ED /* Wave.swift in Sources */,
 				C9A10BAB294A4A7000085075 /* HowToPlayScene.swift in Sources */,
+				C9A10BDF294BC63D00085075 /* PauseScene.swift in Sources */,
 				C9CEEE94294731790063F185 /* PlayerStateMachine.swift in Sources */,
 				2A5F2B97293F5BCF0056AAE3 /* GameViewController.swift in Sources */,
 				2A10028129472BBB009546ED /* EnemyNode.swift in Sources */,
@@ -418,7 +422,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "rita-marrano.LandOfFires";
+				PRODUCT_BUNDLE_IDENTIFIER = alina.LandOfFires;
 				PRODUCT_NAME = LandOfFires;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -450,7 +454,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "rita-marrano.LandOfFires";
+				PRODUCT_BUNDLE_IDENTIFIER = alina.LandOfFires;
 				PRODUCT_NAME = LandOfFires;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
