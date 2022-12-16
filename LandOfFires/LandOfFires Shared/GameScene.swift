@@ -287,14 +287,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if currentWave.enemies.isEmpty {
             for (index, position) in positions.shuffled().enumerated(){
                 let enemy = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: position), xOffset: enemyOffesetX * CGFloat(index * 5), moveStraight: true)
-            enemy.setScale(2)
-                enemy.zRotation = CGFloat(1.6)
+                enemy.setScale(1.8)
+                enemy.zRotation = CGFloat(1.3)
                 addChild(enemy)
             }} else {
                 for enemy in currentWave.enemies {
                     let node = EnemyNode(type: enemyTypes[enemyType], startPosition: CGPoint(x: enemyStartX, y: positions[enemy.position]), xOffset: enemyOffesetX * enemy.xOffset, moveStraight: enemy.moveStraight)
-                    node.setScale(2.5)
-                    node.zRotation = CGFloat(1.6)
+                    node.setScale(1.8)
+                    node.zRotation = CGFloat(1.3)
                     addChild(node)
                 }
             }
@@ -660,7 +660,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addPlayer () {
         player = SKSpriteNode(imageNamed: "player")
-        player.setScale(0.15)
+        player.setScale(0.05)
         
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size )
         player.physicsBody?.isDynamic = false
@@ -673,7 +673,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         player.name = "player"
-        player.position = CGPoint(x: 120, y: 160)
+        player.position = CGPoint(x: 135, y: 160)
         
         
         playerMoveUp = SKAction.moveBy(x: 0, y: 30, duration: 0.1)
