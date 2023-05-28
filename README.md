@@ -6,10 +6,6 @@ Land of Fires, an arcade shoot 'em up game featuring gloomy, yet sharply animate
 
 _________________
 
-##### Github: https://github.com/acacciola22/LandOfFires  
-
-_________________
-
 ##### Team:
 **[Alina Brandizzi](https://www.behance.net/roaringspark)** - pixel art, 2d animations, HUD & fairy design  
 **Antonia Cacciola** - coding  
