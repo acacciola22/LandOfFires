@@ -2,7 +2,7 @@
 
 #### In the polluted Land of Fires, a mysterious mechanical fairy is fighting toxic waste with her purifying magic to defend nature.
 
-Land of Fires, an arcade shoot 'em up game featuring gloomy, yet sharply animated pixel art, was developed in the span of eleven days by a team of five, using the SpriteKit framework.
+Land of Fires, an arcade shoot 'em up game for iOs featuring gloomy, yet sharply animated pixel art, was developed in the span of eleven days by a team of five, using the SpriteKit framework.
 
 _________________
 
