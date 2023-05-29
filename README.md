@@ -4,7 +4,6 @@
 
 Land of Fires, an arcade shoot 'em up game for iOs featuring gloomy, yet sharply animated pixel art, was developed in the span of eleven days by a team of five, using the SpriteKit framework.
 
-![name]([link](https://github.com/acacciola22/LandOfFires/blob/newMain/LandOfFires/lofgameplay480.mov))
 ![My Image](https://github.com/acacciola22/LandOfFires/blob/newMain/LandOfFires/LOF1.png)
 ![My Image](https://github.com/acacciola22/LandOfFires/blob/newMain/LandOfFires/LOF2.png)
 _________________
